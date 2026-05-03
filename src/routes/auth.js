@@ -157,22 +157,22 @@ router.post('/register', csrfProtection, registerLimiter, async (req, res) => {
 
   const verifyUrl = `${config.baseUrl}/verify-email?token=${encodeURIComponent(token)}`;
 
-  try {
-    await sendMail({
-      to: email,
-      locale: req.locale,
-      template: 'verify-email',
-      vars: { name: full_name, verifyUrl },
-    });
-  } catch (err) {
-    console.error('Failed to send verification email:', err);
-  }
-
   if (!config.smtp.ready && !config.isProd) {
     console.log(`[dev] Verification URL for ${email}: ${verifyUrl}`);
   }
 
-  return res.render('auth/verify-pending', { email });
+  // Render the "check your email" page immediately. Send the email in the
+  // background — SMTP can take 10+ seconds; we don't want the browser to hang.
+  res.render('auth/verify-pending', { email });
+
+  sendMail({
+    to: email,
+    locale: req.locale,
+    template: 'verify-email',
+    vars: { name: full_name, verifyUrl },
+  }).catch((err) => {
+    console.error(`Failed to send verification email to ${email}:`, err.message || err);
+  });
 });
 
 router.get('/verify-email', (req, res) => {
@@ -276,20 +276,20 @@ router.post('/forgot-password', csrfProtection, forgotLimiter, async (req, res) 
   insertPasswordReset.run(token, user.id);
   const resetUrl = `${config.baseUrl}/reset-password?token=${encodeURIComponent(token)}`;
 
-  try {
-    await sendMail({
-      to: email,
-      locale: req.locale,
-      template: 'reset-password',
-      vars: { resetUrl },
-    });
-  } catch (err) {
-    console.error('Failed to send reset email:', err);
-  }
   if (!config.smtp.ready && !config.isProd) {
     console.log(`[dev] Reset URL for ${email}: ${resetUrl}`);
   }
-  return finish();
+
+  finish();
+
+  sendMail({
+    to: email,
+    locale: req.locale,
+    template: 'reset-password',
+    vars: { resetUrl },
+  }).catch((err) => {
+    console.error(`Failed to send reset email to ${email}:`, err.message || err);
+  });
 });
 
 router.get('/reset-password', (req, res) => {
