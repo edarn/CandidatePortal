@@ -1,0 +1,88 @@
+<%- include('../partials/head', { pageTitle: t('privacy.title') }) %>
+<section>
+  <h1>Privacy Policy</h1>
+  <p class="muted">Last updated: 2026-05-03</p>
+
+  <h2>1. Data controller</h2>
+  <p>
+    The data controller for the processing of your personal data is
+    <strong>Thomas Hermansson</strong>. You can reach the data controller at
+    <a href="mailto:thomas.hermansson@gmail.com">thomas.hermansson@gmail.com</a>.
+  </p>
+
+  <h2>2. What data we process</h2>
+  <p>When you register an account in CandidatePortal we collect:</p>
+  <ul>
+    <li>Name</li>
+    <li>Email address</li>
+    <li>Phone number</li>
+    <li>Password (stored only as a hash, never readable in plaintext)</li>
+    <li>Optional profile fields you choose to add: LinkedIn URL, current role and company, location, short summary</li>
+    <li>CV file (PDF or Word) that you upload yourself</li>
+    <li>Technical data: IP address at login and cookies required for session and language preference</li>
+    <li>Any notes the administrator makes about meeting you (e.g. place and date of the meeting)</li>
+  </ul>
+
+  <h2>3. Purpose and legal basis</h2>
+  <p>
+    The processing is performed exclusively so that the data controller can
+    evaluate whether you are of interest for future recruitment or collaboration.
+    The legal basis is your <strong>consent</strong> under
+    Article 6.1(a) of the General Data Protection Regulation (GDPR), which you
+    give by ticking the consent checkbox at registration.
+  </p>
+
+  <h2>4. Recipients</h2>
+  <p>
+    Only the data controller has access to your data within the service.
+    We use the following processors to operate the service:
+  </p>
+  <ul>
+    <li><strong>Hosting provider</strong> (Railway) which stores the database and uploaded files</li>
+    <li><strong>Email provider</strong> (Gmail) for sending verification and reset emails</li>
+  </ul>
+  <p>Your data is never sold or shared with third parties for marketing purposes.</p>
+
+  <h2>5. Retention</h2>
+  <p>
+    Your data is kept as long as your account is active. If your account is
+    inactive for 12 months (no login or profile edit), a warning is sent to your
+    email and the account is automatically deleted 14 days after the warning if
+    you don't log in.
+  </p>
+  <p>
+    You can delete your account yourself at any time via your profile page, which
+    immediately removes all data including your uploaded CV.
+  </p>
+
+  <h2>6. Your rights</h2>
+  <ul>
+    <li><strong>Right of access:</strong> You can download all data we hold about you as JSON via &quot;Export my data&quot; on your profile page.</li>
+    <li><strong>Right of rectification:</strong> You can edit your profile fields any time via &quot;My profile&quot;.</li>
+    <li><strong>Right to erasure:</strong> You can delete your account via &quot;Delete my account&quot; on the profile page.</li>
+    <li><strong>Right to withdraw consent:</strong> Deleting your account is equivalent to withdrawing consent — after that we process no data about you.</li>
+    <li><strong>Right to lodge a complaint:</strong> You have the right to file a complaint with the supervisory authority <a href="https://www.imy.se/" target="_blank" rel="noopener">Integritetsskyddsmyndigheten (IMY)</a> if you believe the processing violates GDPR.</li>
+  </ul>
+
+  <h2>7. Cookies</h2>
+  <p>
+    We use only strictly necessary cookies: a session cookie to keep you logged
+    in and a cookie that remembers your language choice. No tracking or
+    marketing cookies are used.
+  </p>
+
+  <h2>8. Security</h2>
+  <p>
+    Passwords are stored with strong hashing (bcrypt). The connection to the
+    site is protected with HTTPS. CV files are served only to authenticated
+    users via auth-protected endpoints and are never directly accessible on
+    the internet.
+  </p>
+
+  <h2>9. Changes to this policy</h2>
+  <p>
+    If we change this policy, the &quot;last updated&quot; date above is updated.
+    For significant changes, you will be notified by email.
+  </p>
+</section>
+<%- include('../partials/foot') %>

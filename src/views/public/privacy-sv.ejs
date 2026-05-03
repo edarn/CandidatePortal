@@ -1,0 +1,87 @@
+<%- include('../partials/head', { pageTitle: t('privacy.title') }) %>
+<section>
+  <h1>Integritetspolicy</h1>
+  <p class="muted">Senast uppdaterad: 2026-05-03</p>
+
+  <h2>1. Personuppgiftsansvarig</h2>
+  <p>
+    Personuppgiftsansvarig för behandlingen av dina personuppgifter är
+    <strong>Thomas Hermansson</strong>. Du kan kontakta personuppgiftsansvarig på
+    <a href="mailto:thomas.hermansson@gmail.com">thomas.hermansson@gmail.com</a>.
+  </p>
+
+  <h2>2. Vilka uppgifter behandlas</h2>
+  <p>När du registrerar ett konto i CandidatePortal samlar vi in följande:</p>
+  <ul>
+    <li>Namn</li>
+    <li>E-postadress</li>
+    <li>Telefonnummer</li>
+    <li>Lösenord (sparas endast i hashad form, läses aldrig i klartext)</li>
+    <li>Uppgifter du själv väljer att lägga till i din profil: LinkedIn-URL, nuvarande roll och företag, plats samt kort beskrivning</li>
+    <li>CV (PDF eller Word) som du själv laddar upp</li>
+    <li>Tekniska uppgifter: IP-adress vid inloggning samt cookies som krävs för session och språkval</li>
+    <li>Eventuella anteckningar som administratören gör om mötet med dig (t.ex. plats och datum för mötet)</li>
+  </ul>
+
+  <h2>3. Ändamål och rättslig grund</h2>
+  <p>
+    Behandlingen sker uteslutande för att personuppgiftsansvarig ska kunna utvärdera
+    om du är intressant för framtida rekryterings- eller samarbetsmöjligheter.
+    Den rättsliga grunden är ditt <strong>samtycke</strong>
+    enligt artikel 6.1 a i Dataskyddsförordningen (GDPR), som du lämnar genom att
+    bocka i samtyckesrutan vid registrering.
+  </p>
+
+  <h2>4. Mottagare av uppgifterna</h2>
+  <p>
+    Endast personuppgiftsansvarig har åtkomst till dina uppgifter inom tjänsten.
+    Vi använder följande underbiträden för att driva tjänsten:
+  </p>
+  <ul>
+    <li><strong>Hostingleverantör</strong> (Railway) som lagrar databas och uppladdade filer</li>
+    <li><strong>E-postleverantör</strong> (Gmail) för utskick av verifierings- och återställningsmejl</li>
+  </ul>
+  <p>Uppgifterna säljs eller delas aldrig vidare till tredje part i marknadsföringssyfte.</p>
+
+  <h2>5. Lagringstid</h2>
+  <p>
+    Dina uppgifter sparas så länge du har ett aktivt konto. Om kontot är inaktivt
+    i 12 månader (ingen inloggning eller profilredigering) skickas en varning till
+    din e-post och kontot raderas automatiskt 14 dagar efter varningen, om du inte
+    loggar in.
+  </p>
+  <p>
+    Du kan när som helst själv radera ditt konto via profilsidan, vilket omedelbart
+    raderar all data inklusive ditt uppladdade CV.
+  </p>
+
+  <h2>6. Dina rättigheter</h2>
+  <ul>
+    <li><strong>Rätt till tillgång:</strong> Du kan ladda ner all data vi har om dig som JSON via &quot;Exportera min data&quot; på din profilsida.</li>
+    <li><strong>Rätt till rättelse:</strong> Du kan när som helst redigera dina profiluppgifter via &quot;Min profil&quot;.</li>
+    <li><strong>Rätt till radering:</strong> Du kan radera ditt konto via &quot;Radera mitt konto&quot; på profilsidan.</li>
+    <li><strong>Rätt att återkalla samtycke:</strong> Att radera ditt konto motsvarar att återkalla samtycket — efter det behandlar vi inga uppgifter om dig.</li>
+    <li><strong>Rätt att lämna klagomål:</strong> Du har rätt att lämna in klagomål till tillsynsmyndigheten <a href="https://www.imy.se/" target="_blank" rel="noopener">Integritetsskyddsmyndigheten (IMY)</a> om du anser att behandlingen strider mot GDPR.</li>
+  </ul>
+
+  <h2>7. Cookies</h2>
+  <p>
+    Vi använder endast funktionsnödvändiga cookies: en session-cookie för att hålla
+    dig inloggad och en cookie som kommer ihåg ditt språkval. Inga spårnings- eller
+    marknadsföringscookies används.
+  </p>
+
+  <h2>8. Säkerhet</h2>
+  <p>
+    Lösenord lagras med stark hashning (bcrypt). Anslutningen till webbplatsen
+    skyddas med HTTPS. CV-filer serveras endast till inloggade användare via
+    auth-skyddade endpoints och är aldrig direkt åtkomliga från internet.
+  </p>
+
+  <h2>9. Ändringar i denna policy</h2>
+  <p>
+    Om vi ändrar denna policy uppdateras &quot;senast uppdaterad&quot;-datumet ovan.
+    Vid väsentliga ändringar meddelas du via e-post.
+  </p>
+</section>
+<%- include('../partials/foot') %>
