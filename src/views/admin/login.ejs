@@ -1,0 +1,20 @@
+<%- include('../partials/head', { pageTitle: t('admin.loginTitle') }) %>
+<section>
+  <h1><%= t('admin.loginTitle') %></h1>
+  <% if (errors._form) { %>
+    <div class="flash error"><%= t(errors._form) %></div>
+  <% } %>
+  <form method="post" action="/admin/login" novalidate>
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <label>
+      <%= t('fields.email') %>
+      <input type="email" name="email" value="<%= values.email || '' %>" required>
+    </label>
+    <label>
+      <%= t('fields.password') %>
+      <input type="password" name="password" required>
+    </label>
+    <button type="submit"><%= t('auth.login.submit') %></button>
+  </form>
+</section>
+<%- include('../partials/foot') %>
