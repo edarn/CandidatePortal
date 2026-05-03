@@ -1,0 +1,79 @@
+<%- include('../partials/head', { pageTitle: t('admin.list.title') }) %>
+<%
+function pageUrl(p) {
+  const q = Object.assign({}, currentParams, { page: p });
+  return '?' + Object.entries(q).filter(([_, v]) => v !== '' && v !== undefined && v !== null).map(([k, v]) => k + '=' + encodeURIComponent(v)).join('&');
+}
+%>
+<section>
+  <h1><%= t('admin.list.title') %> (<%= total %>)</h1>
+
+  <form method="get" action="/admin" style="display:flex; gap:0.5rem; align-items:flex-end; flex-wrap:wrap;">
+    <label style="flex:1; min-width:200px; margin:0;">
+      <%= t('admin.list.search') %>
+      <input type="text" name="q" value="<%= currentParams.q || '' %>">
+    </label>
+    <label style="margin:0;">
+      <%= t('admin.list.filterTag') %>
+      <select name="tag">
+        <option value=""><%= t('common.all') %></option>
+        <% allTags.forEach(function(tag) { %>
+          <option value="<%= tag.id %>" <%= String(tag.id) === String(currentParams.tag) ? 'selected' : '' %>><%= tag.name %></option>
+        <% }); %>
+      </select>
+    </label>
+    <label style="margin:0;">
+      <%= t('admin.list.sort') %>
+      <select name="sort">
+        <option value="date_desc" <%= currentParams.sort === 'date_desc' || !currentParams.sort ? 'selected' : '' %>><%= t('admin.list.sortDateDesc') %></option>
+        <option value="date_asc" <%= currentParams.sort === 'date_asc' ? 'selected' : '' %>><%= t('admin.list.sortDateAsc') %></option>
+        <option value="name" <%= currentParams.sort === 'name' ? 'selected' : '' %>><%= t('admin.list.sortNameAsc') %></option>
+        <option value="name_desc" <%= currentParams.sort === 'name_desc' ? 'selected' : '' %>><%= t('admin.list.sortNameDesc') %></option>
+      </select>
+    </label>
+    <button type="submit" style="margin:0;"><%= t('common.search') %></button>
+    <a href="/admin/export.csv<%= csvQuery ? '?' + csvQuery : '' %>" role="button" class="secondary" style="margin:0;"><%= t('admin.exportCsv') %></a>
+    <a href="/admin/tags" role="button" class="secondary outline" style="margin:0;"><%= t('admin.tags.title') %></a>
+  </form>
+
+  <% if (rows.length === 0) { %>
+    <p class="muted"><%= t('admin.list.noResults') %></p>
+  <% } else { %>
+    <table class="candidates-table">
+      <thead><tr>
+        <th><%= t('fields.fullName') %></th>
+        <th><%= t('fields.email') %></th>
+        <th><%= t('fields.phone') %></th>
+        <th><%= t('admin.candidate.tags') %></th>
+        <th><%= t('admin.list.addedAt') %></th>
+      </tr></thead>
+      <tbody>
+      <% rows.forEach(function(row) { %>
+        <tr>
+          <td><a href="/admin/candidate/<%= row.id %>"><%= row.full_name %></a></td>
+          <td>
+            <%= row.email %>
+            <% if (!row.email_verified_at) { %><span class="muted">(<%= t('admin.list.notVerified') %>)</span><% } %>
+          </td>
+          <td><%= row.phone %></td>
+          <td>
+            <% (row.tag_names || '').split(',').filter(Boolean).forEach(function(name) { %>
+              <span class="tag-pill"><%= name %></span>
+            <% }); %>
+          </td>
+          <td class="muted"><%= row.created_at %></td>
+        </tr>
+      <% }); %>
+      </tbody>
+    </table>
+
+    <% if (totalPages > 1) { %>
+      <nav style="display:flex; gap:0.5rem; margin-top:1rem;">
+        <% for (var p = 1; p <= totalPages; p++) { %>
+          <a href="<%= pageUrl(p) %>"<%= p === page ? ' aria-current="page" style="font-weight:bold"' : '' %>><%= p %></a>
+        <% } %>
+      </nav>
+    <% } %>
+  <% } %>
+</section>
+<%- include('../partials/foot') %>
