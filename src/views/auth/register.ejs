@@ -1,0 +1,45 @@
+<%- include('../partials/head', { pageTitle: t('auth.register.title') }) %>
+<section>
+  <h1><%= t('auth.register.title') %></h1>
+  <% if (errors._form) { %>
+    <div class="flash error"><%= t(errors._form) %></div>
+  <% } %>
+  <form method="post" action="/register" novalidate>
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+    <label>
+      <%= t('fields.fullName') %>
+      <input type="text" name="full_name" value="<%= values.full_name || '' %>" required>
+      <% if (errors.full_name) { %><span class="field-error"><%= t(errors.full_name) %></span><% } %>
+    </label>
+
+    <label>
+      <%= t('fields.email') %>
+      <input type="email" name="email" value="<%= values.email || '' %>" required>
+      <% if (errors.email) { %><span class="field-error"><%= t(errors.email) %></span><% } %>
+    </label>
+
+    <label>
+      <%= t('fields.phone') %>
+      <input type="tel" name="phone" value="<%= values.phone || '' %>" required>
+      <% if (errors.phone) { %><span class="field-error"><%= t(errors.phone) %></span><% } %>
+    </label>
+
+    <label>
+      <%= t('fields.password') %>
+      <input type="password" name="password" required minlength="10">
+      <% if (errors.password) { %><span class="field-error"><%= t(errors.password) %></span><% } %>
+    </label>
+
+    <label>
+      <input type="checkbox" name="consent" value="on" required <%= values.consent ? 'checked' : '' %>>
+      <%= t('fields.consent') %>
+      (<a href="/privacy" target="_blank"><%= t('auth.register.consentLink') %></a>)
+    </label>
+    <% if (errors.consent) { %><div class="field-error"><%= t(errors.consent) %></div><% } %>
+
+    <button type="submit"><%= t('auth.register.submit') %></button>
+  </form>
+  <p><%= t('auth.register.haveAccount') %> <a href="/login"><%= t('auth.register.loginLink') %></a></p>
+</section>
+<%- include('../partials/foot') %>

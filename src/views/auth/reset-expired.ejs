@@ -1,0 +1,7 @@
+<%- include('../partials/head', { pageTitle: t('auth.reset.title') }) %>
+<section>
+  <h1><%= t('auth.reset.title') %></h1>
+  <div class="flash error"><%= t('auth.reset.expired') %></div>
+  <p><a href="/forgot-password" role="button"><%= t('auth.forgot.title') %></a></p>
+</section>
+<%- include('../partials/foot') %>
