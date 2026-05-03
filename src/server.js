@@ -12,10 +12,11 @@ const { bootstrapAdminFromEnv } = await import(
 );
 await bootstrapAdminFromEnv();
 
-if (process.env.SEED_DEMO === '1') {
-  const { seedDemo } = await import('../scripts/seed-demo.js');
-  await seedDemo();
-}
+// Seed demo data on first boot against an empty database. Idempotent —
+// writes a marker in the settings table after seeding so subsequent boots
+// skip silently. Refuses to run if real candidates already exist.
+const { seedDemo } = await import('../scripts/seed-demo.js');
+await seedDemo();
 
 const { createApp } = await import('./app.js');
 const app = createApp();

@@ -189,13 +189,36 @@ function buildMinimalPdf(name) {
   return objects.join('\n');
 }
 
-export async function seedDemo() {
-  const exists = db
-    .prepare('SELECT 1 FROM users WHERE email = ?')
-    .get(candidates[0].email);
-  if (exists) {
-    console.log('Demo data already seeded — skipping.');
+const MARKER_KEY = 'demo_seed_done';
+
+const setMarker = () =>
+  db
+    .prepare(
+      `INSERT INTO settings (key, value) VALUES ('${MARKER_KEY}', datetime('now'))
+       ON CONFLICT(key) DO UPDATE SET value = excluded.value, updated_at = datetime('now')`,
+    )
+    .run();
+
+export async function seedDemo({ force = false } = {}) {
+  // 1. If real candidates already exist, never pollute — just mark as done.
+  const candidatesExist = db.prepare('SELECT 1 FROM candidates LIMIT 1').get();
+  if (candidatesExist) {
+    setMarker();
+    if (force) {
+      console.log('Demo seed: candidates exist, refusing to seed even with --force.');
+    }
     return;
+  }
+
+  // 2. If marker is set and we're not forcing, skip.
+  if (!force) {
+    const marker = db
+      .prepare("SELECT value FROM settings WHERE key = ?")
+      .get(MARKER_KEY);
+    if (marker) {
+      // Already seeded once; skip silently on every subsequent boot.
+      return;
+    }
   }
 
   const passwordHash = await bcrypt.hash(DEMO_PASSWORD, 12);
@@ -271,6 +294,8 @@ export async function seedDemo() {
     }
   }
 
+  setMarker();
+
   console.log(
     `Seeded ${candidates.length} demo candidates. Login as any of them with password: "${DEMO_PASSWORD}"`,
   );
@@ -279,5 +304,6 @@ export async function seedDemo() {
 const isMain = import.meta.url === pathToFileURL(process.argv[1]).href;
 if (isMain) {
   runMigrations();
-  await seedDemo();
+  const force = process.argv.includes('--force');
+  await seedDemo({ force });
 }
