@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html lang="<%= locale %>">
+<head><meta charset="utf-8"></head>
+<body style="font-family: sans-serif; line-height: 1.5; color: #111;">
+  <p><%= t('emails.inactivity-warning.greeting', { name }) %>,</p>
+  <p><%= t('emails.inactivity-warning.body', { siteName, days }) %></p>
+  <p><a href="<%= loginUrl %>" style="display:inline-block;padding:0.6em 1.2em;background:#3b82f6;color:#fff;text-decoration:none;border-radius:4px;"><%= t('emails.inactivity-warning.linkText') %></a></p>
+</body>
+</html>
