@@ -1,0 +1,12 @@
+<%- include('../partials/head', { pageTitle: null }) %>
+<section>
+  <h1><%= t('public.indexTitle') %></h1>
+  <p><%= t('public.indexLead') %></p>
+  <% if (!user) { %>
+    <p>
+      <a href="/register" role="button"><%= t('public.ctaRegister') %></a>
+      <a href="/login" role="button" class="secondary"><%= t('public.ctaLogin') %></a>
+    </p>
+  <% } %>
+</section>
+<%- include('../partials/foot') %>

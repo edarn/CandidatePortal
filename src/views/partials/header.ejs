@@ -1,0 +1,37 @@
+<header class="site-header">
+  <a href="/" class="brand">
+    <% if (logoFilename) { %>
+      <img src="/branding/logo" alt="<%= t('site.title') %>">
+    <% } else { %>
+      <span><%= t('site.title') %></span>
+    <% } %>
+  </a>
+  <nav>
+    <% if (user) { %>
+      <% if (user.role === 'admin') { %>
+        <a href="/admin"><%= t('nav.admin') %></a>
+        <a href="/admin/settings"><%= t('admin.settings.title') %></a>
+      <% } else { %>
+        <a href="/me"><%= t('nav.myProfile') %></a>
+        <a href="/me/cv"><%= t('nav.myCv') %></a>
+      <% } %>
+      <form method="post" action="/logout" class="inline-form">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button type="submit" class="secondary outline"><%= t('nav.logout') %></button>
+      </form>
+    <% } else { %>
+      <a href="/register"><%= t('nav.register') %></a>
+      <a href="/login"><%= t('nav.login') %></a>
+    <% } %>
+    <span class="lang-switcher">
+      <% supportedLocales.forEach(function(lang) { %>
+        <a href="/locale/<%= lang %>?return=<%= encodeURIComponent(path) %>"
+           class="<%= locale === lang ? 'active' : '' %>"
+           title="<%= t('flags.' + lang) %>"
+           aria-label="<%= t('flags.' + lang) %>">
+          <img src="/flags/<%= lang %>.svg" alt="<%= t('flags.' + lang) %>">
+        </a>
+      <% }); %>
+    </span>
+  </nav>
+</header>
