@@ -1,5 +1,5 @@
 <%- include('../partials/head', { pageTitle: t('admin.loginTitle') }) %>
-<section>
+<section class="auth-card">
   <h1><%= t('admin.loginTitle') %></h1>
   <% if (errors._form) { %>
     <div class="flash error"><%= t(errors._form) %></div>
@@ -8,7 +8,7 @@
     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     <label>
       <%= t('fields.email') %>
-      <input type="email" name="email" value="<%= values.email || '' %>" required>
+      <input type="email" name="email" value="<%= values.email || '' %>" required autofocus>
     </label>
     <label>
       <%= t('fields.password') %>

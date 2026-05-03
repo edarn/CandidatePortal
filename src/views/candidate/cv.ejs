@@ -1,24 +1,26 @@
 <%- include('../partials/head', { pageTitle: t('me.cv.title') }) %>
+<p style="margin-bottom: 1rem;"><a href="/me">&larr; <%= t('common.back') %></a></p>
+
 <section>
   <h1><%= t('me.cv.title') %></h1>
 
   <% if (candidate.cv_filename) { %>
-    <article>
-      <p><strong><%= t('me.cv.current') %>:</strong> <%= candidate.cv_original_name %></p>
-      <p class="muted"><%= t('me.cv.uploadedAt') %>: <%= candidate.cv_uploaded_at %></p>
-      <p>
-        <a href="/me/cv/download" role="button" class="secondary"><%= t('common.download') %></a>
-      </p>
+    <p><strong><%= t('me.cv.current') %>:</strong> <%= candidate.cv_original_name %></p>
+    <p class="muted" style="font-size: 0.88rem;"><%= t('me.cv.uploadedAt') %>: <%= candidate.cv_uploaded_at %></p>
+    <div class="actions-row" style="margin-top: 0.75rem;">
+      <a href="/me/cv/download" role="button" class="secondary"><%= t('common.download') %></a>
       <form method="post" action="/me/cv/delete" class="inline-form">
         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <button type="submit" class="secondary outline"><%= t('me.cv.delete') %></button>
       </form>
-    </article>
+    </div>
   <% } else { %>
     <p class="muted"><%= t('me.cv.noFile') %></p>
   <% } %>
+</section>
 
-  <h2><%= t('me.cv.upload') %></h2>
+<section>
+  <h3><%= t('me.cv.upload') %></h3>
   <form method="post" action="/me/cv" enctype="multipart/form-data" novalidate>
     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     <label>
@@ -27,7 +29,5 @@
     </label>
     <button type="submit"><%= t('common.upload') %></button>
   </form>
-
-  <p><a href="/me"><%= t('common.back') %></a></p>
 </section>
 <%- include('../partials/foot') %>

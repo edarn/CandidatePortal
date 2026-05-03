@@ -12,6 +12,11 @@ const { bootstrapAdminFromEnv } = await import(
 );
 await bootstrapAdminFromEnv();
 
+if (process.env.SEED_DEMO === '1') {
+  const { seedDemo } = await import('../scripts/seed-demo.js');
+  await seedDemo();
+}
+
 const { createApp } = await import('./app.js');
 const app = createApp();
 

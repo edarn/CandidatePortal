@@ -1,5 +1,5 @@
 <%- include('../partials/head', { pageTitle: t('auth.register.title') }) %>
-<section>
+<section class="auth-card">
   <h1><%= t('auth.register.title') %></h1>
   <% if (errors._form) { %>
     <div class="flash error"><%= t(errors._form) %></div>
@@ -9,7 +9,7 @@
 
     <label>
       <%= t('fields.fullName') %>
-      <input type="text" name="full_name" value="<%= values.full_name || '' %>" required>
+      <input type="text" name="full_name" value="<%= values.full_name || '' %>" required autofocus>
       <% if (errors.full_name) { %><span class="field-error"><%= t(errors.full_name) %></span><% } %>
     </label>
 
@@ -31,7 +31,7 @@
       <% if (errors.password) { %><span class="field-error"><%= t(errors.password) %></span><% } %>
     </label>
 
-    <label>
+    <label style="font-weight: 400; font-size: 0.9rem;">
       <input type="checkbox" name="consent" value="on" required <%= values.consent ? 'checked' : '' %>>
       <%= t('fields.consent') %>
       (<a href="/privacy" target="_blank"><%= t('auth.register.consentLink') %></a>)
@@ -40,6 +40,8 @@
 
     <button type="submit"><%= t('auth.register.submit') %></button>
   </form>
-  <p><%= t('auth.register.haveAccount') %> <a href="/login"><%= t('auth.register.loginLink') %></a></p>
+  <div class="auth-links">
+    <p><%= t('auth.register.haveAccount') %> <a href="/login"><%= t('auth.register.loginLink') %></a></p>
+  </div>
 </section>
 <%- include('../partials/foot') %>

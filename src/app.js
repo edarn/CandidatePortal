@@ -33,7 +33,7 @@ export function createApp() {
       contentSecurityPolicy: {
         directives: {
           defaultSrc: ["'self'"],
-          styleSrc: ["'self'", 'https://cdn.jsdelivr.net', "'unsafe-inline'"],
+          styleSrc: ["'self'", "'unsafe-inline'"],
           imgSrc: ["'self'", 'data:'],
           scriptSrc: ["'self'"],
           objectSrc: ["'self'"],

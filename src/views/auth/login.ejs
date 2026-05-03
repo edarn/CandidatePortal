@@ -1,5 +1,5 @@
 <%- include('../partials/head', { pageTitle: t('auth.login.title') }) %>
-<section>
+<section class="auth-card">
   <h1><%= t('auth.login.title') %></h1>
   <% if (errors._form) { %>
     <div class="flash error"><%= t(errors._form) %></div>
@@ -8,7 +8,7 @@
     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     <label>
       <%= t('fields.email') %>
-      <input type="email" name="email" value="<%= values.email || '' %>" required>
+      <input type="email" name="email" value="<%= values.email || '' %>" required autofocus>
     </label>
     <label>
       <%= t('fields.password') %>
@@ -16,7 +16,9 @@
     </label>
     <button type="submit"><%= t('auth.login.submit') %></button>
   </form>
-  <p><a href="/forgot-password"><%= t('auth.login.forgotPassword') %></a></p>
-  <p><%= t('auth.login.noAccount') %> <a href="/register"><%= t('auth.login.registerLink') %></a></p>
+  <div class="auth-links">
+    <p><a href="/forgot-password"><%= t('auth.login.forgotPassword') %></a></p>
+    <p><%= t('auth.login.noAccount') %> <a href="/register"><%= t('auth.login.registerLink') %></a></p>
+  </div>
 </section>
 <%- include('../partials/foot') %>

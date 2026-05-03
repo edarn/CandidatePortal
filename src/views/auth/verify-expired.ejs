@@ -1,7 +1,9 @@
 <%- include('../partials/head', { pageTitle: t('auth.verify.pendingTitle') }) %>
-<section>
+<section class="auth-card">
   <h1><%= t('auth.verify.pendingTitle') %></h1>
   <div class="flash error"><%= t('auth.verify.expired') %></div>
-  <p><a href="/register" role="button"><%= t('auth.register.title') %></a></p>
+  <div class="auth-links">
+    <p><a href="/register"><%= t('auth.register.title') %></a></p>
+  </div>
 </section>
 <%- include('../partials/foot') %>

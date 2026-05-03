@@ -4,16 +4,6 @@ import { generateCsrfToken } from './csrf.js';
 const getSetting = db.prepare('SELECT value FROM settings WHERE key = ?');
 
 export function locals(req, res, next) {
-  // diagnostic logging — remove once login flow confirmed working
-  console.log(
-    `[req] ${req.method} ${req.path} ` +
-      `sid=${(req.sessionID || '').slice(0, 8)} ` +
-      `session.user=${req.session?.user?.role || 'none'} ` +
-      `session.csrfToken=${(req.session?.csrfToken || '').slice(0, 8) || 'none'} ` +
-      `body._csrf=${(req.body?._csrf || '').slice(0, 8) || 'none'} ` +
-      `cookies=[${Object.keys(req.cookies || {}).join('|') || 'none'}]`,
-  );
-
   res.locals.user = req.session?.user || null;
 
   const logoRow = getSetting.get('logo_filename');

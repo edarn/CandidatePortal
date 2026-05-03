@@ -1,5 +1,5 @@
 <%- include('../partials/head', { pageTitle: t('me.delete.title') }) %>
-<section>
+<section class="auth-card">
   <h1 class="danger"><%= t('me.delete.title') %></h1>
   <div class="flash warning"><%= t('me.delete.warning') %></div>
   <% if (error) { %>
@@ -11,8 +11,10 @@
       <%= t('me.delete.confirm') %>
       <input type="text" name="confirm" required autocomplete="off" autofocus>
     </label>
-    <button type="submit" class="button-danger"><%= t('me.delete.submit') %></button>
-    <a href="/me" role="button" class="secondary"><%= t('common.cancel') %></a>
+    <div class="actions-row" style="margin-top: 0.5rem;">
+      <button type="submit" class="button-danger"><%= t('me.delete.submit') %></button>
+      <a href="/me" role="button" class="secondary"><%= t('common.cancel') %></a>
+    </div>
   </form>
 </section>
 <%- include('../partials/foot') %>
