@@ -33,7 +33,17 @@ const envSchema = z.object({
   BACKUP_S3_REGION: optionalString,
 });
 
-const parsed = envSchema.safeParse(process.env);
+const rawEnv = { ...process.env };
+// Derive BASE_URL from Railway's public domain when not explicitly set.
+if (!rawEnv.BASE_URL && rawEnv.RAILWAY_PUBLIC_DOMAIN) {
+  rawEnv.BASE_URL = `https://${rawEnv.RAILWAY_PUBLIC_DOMAIN}`;
+}
+// Auto-prepend https:// if a scheme is missing.
+if (rawEnv.BASE_URL && !/^https?:\/\//i.test(rawEnv.BASE_URL)) {
+  rawEnv.BASE_URL = `https://${rawEnv.BASE_URL}`;
+}
+
+const parsed = envSchema.safeParse(rawEnv);
 
 if (!parsed.success) {
   const issues = parsed.error.flatten().fieldErrors;
