@@ -1,0 +1,47 @@
+<%
+function pageUrl(p) {
+  const q = Object.assign({}, currentParams, { page: p });
+  return '?' + Object.entries(q).filter(([_, v]) => v !== '' && v !== undefined && v !== null).map(([k, v]) => k + '=' + encodeURIComponent(v)).join('&');
+}
+%>
+<% if (rows.length === 0) { %>
+  <p class="muted" style="margin: 0;"><%= t('admin.list.noResults') %></p>
+<% } else { %>
+  <div class="table-wrap">
+    <table>
+      <thead><tr>
+        <th><%= t('fields.fullName') %></th>
+        <th><%= t('fields.email') %></th>
+        <th><%= t('fields.phone') %></th>
+        <th><%= t('admin.candidate.tags') %></th>
+        <th><%= t('admin.list.addedAt') %></th>
+      </tr></thead>
+      <tbody>
+      <% rows.forEach(function(row) { %>
+        <tr>
+          <td><a href="/admin/candidate/<%= row.id %>"><%= row.full_name %></a></td>
+          <td>
+            <%= row.email %>
+            <% if (!row.email_verified_at) { %><span class="muted" style="font-size: 0.8em;">(<%= t('admin.list.notVerified') %>)</span><% } %>
+          </td>
+          <td><%= row.phone %></td>
+          <td>
+            <% (row.tag_names || '').split(',').filter(Boolean).forEach(function(name) { %>
+              <span class="tag-pill"><%= name %></span>
+            <% }); %>
+          </td>
+          <td class="muted"><%= row.created_at ? row.created_at.slice(0, 10) : '' %></td>
+        </tr>
+      <% }); %>
+      </tbody>
+    </table>
+  </div>
+
+  <% if (totalPages > 1) { %>
+    <nav class="pagination">
+      <% for (var p = 1; p <= totalPages; p++) { %>
+        <a href="<%= pageUrl(p) %>"<%= p === page ? ' aria-current="page"' : '' %>><%= p %></a>
+      <% } %>
+    </nav>
+  <% } %>
+<% } %>

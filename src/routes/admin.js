@@ -200,6 +200,19 @@ router.get('/', (req, res) => {
   const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
 
   const currentParams = { q, tag, sort };
+
+  // Live-search fragment: just the table + pagination
+  if (req.query.fragment === '1') {
+    res.set('X-Total-Count', String(total));
+    return res.render('admin/list-fragment', {
+      rows,
+      total,
+      page,
+      totalPages,
+      currentParams,
+    });
+  }
+
   const csvQuery = Object.entries(currentParams)
     .filter(([, v]) => v !== '' && v !== undefined && v !== null)
     .map(([k, v]) => `${k}=${encodeURIComponent(v)}`)

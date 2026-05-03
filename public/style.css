@@ -437,21 +437,40 @@ table td a { color: #4f46e5; font-weight: 500; }
 }
 .auth-card .auth-links p { margin-bottom: 0.4rem; }
 
-/* --- Filter bar --- */
+/* --- List header (admin) --- */
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.list-header h1 {
+  font-size: 1.4rem;
+  margin: 0;
+}
+.list-header .muted { font-weight: 400; font-size: 0.7em; margin-left: 0.25em; }
+
+/* --- Filter bar (live-search) --- */
 .filter-bar {
   display: flex;
-  gap: 0.6rem;
-  align-items: flex-end;
+  gap: 0.5rem;
   flex-wrap: wrap;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 .filter-bar > * { margin: 0; }
-.filter-bar input,
-.filter-bar select { margin-top: 0.3rem; }
-.filter-bar > label { flex: 0 1 auto; }
-.filter-bar > label:first-child { flex: 1 1 200px; }
-.filter-bar button,
-.filter-bar [role="button"] { align-self: flex-end; }
+.filter-bar input[type="search"] {
+  flex: 1 1 240px;
+  margin: 0;
+}
+.filter-bar select {
+  flex: 0 0 auto;
+  margin: 0;
+  min-width: 140px;
+}
+
+#candidates-table-container { transition: opacity 0.12s; }
 
 /* --- Detail layouts (admin candidate) --- */
 .kv {
