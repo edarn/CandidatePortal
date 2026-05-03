@@ -1,0 +1,33 @@
+<%- include('../partials/head', { pageTitle: t('me.cv.title') }) %>
+<section>
+  <h1><%= t('me.cv.title') %></h1>
+
+  <% if (candidate.cv_filename) { %>
+    <article>
+      <p><strong><%= t('me.cv.current') %>:</strong> <%= candidate.cv_original_name %></p>
+      <p class="muted"><%= t('me.cv.uploadedAt') %>: <%= candidate.cv_uploaded_at %></p>
+      <p>
+        <a href="/me/cv/download" role="button" class="secondary"><%= t('common.download') %></a>
+      </p>
+      <form method="post" action="/me/cv/delete" class="inline-form">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button type="submit" class="secondary outline"><%= t('me.cv.delete') %></button>
+      </form>
+    </article>
+  <% } else { %>
+    <p class="muted"><%= t('me.cv.noFile') %></p>
+  <% } %>
+
+  <h2><%= t('me.cv.upload') %></h2>
+  <form method="post" action="/me/cv" enctype="multipart/form-data" novalidate>
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <label>
+      <input type="file" name="cv" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required>
+      <small><%= t('me.cv.uploadHint') %></small>
+    </label>
+    <button type="submit"><%= t('common.upload') %></button>
+  </form>
+
+  <p><a href="/me"><%= t('common.back') %></a></p>
+</section>
+<%- include('../partials/foot') %>

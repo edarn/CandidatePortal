@@ -1,0 +1,66 @@
+<%- include('../partials/head', { pageTitle: t('me.title') }) %>
+<section>
+  <h1><%= t('me.title') %></h1>
+
+  <form method="post" action="/me" novalidate>
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+    <label>
+      <%= t('fields.email') %>
+      <input type="email" value="<%= candidate.email %>" disabled>
+    </label>
+
+    <label>
+      <%= t('fields.fullName') %>
+      <input type="text" name="full_name" value="<%= values.full_name || '' %>" required>
+      <% if (errors.full_name) { %><span class="field-error"><%= t(errors.full_name) %></span><% } %>
+    </label>
+
+    <label>
+      <%= t('fields.phone') %>
+      <input type="tel" name="phone" value="<%= values.phone || '' %>" required>
+      <% if (errors.phone) { %><span class="field-error"><%= t(errors.phone) %></span><% } %>
+    </label>
+
+    <label>
+      <%= t('fields.linkedin') %>
+      <input type="url" name="linkedin_url" value="<%= values.linkedin_url || '' %>" placeholder="https://linkedin.com/in/...">
+      <% if (errors.linkedin_url) { %><span class="field-error"><%= t(errors.linkedin_url) %></span><% } %>
+    </label>
+
+    <label>
+      <%= t('fields.currentRole') %>
+      <input type="text" name="current_role" value="<%= values.current_role || '' %>">
+    </label>
+
+    <label>
+      <%= t('fields.currentCompany') %>
+      <input type="text" name="current_company" value="<%= values.current_company || '' %>">
+    </label>
+
+    <label>
+      <%= t('fields.location') %>
+      <input type="text" name="location" value="<%= values.location || '' %>">
+    </label>
+
+    <label>
+      <%= t('fields.summary') %>
+      <textarea name="summary" rows="4"><%= values.summary || '' %></textarea>
+    </label>
+
+    <button type="submit"><%= t('me.save') %></button>
+  </form>
+
+  <hr>
+  <h2><%= t('nav.myCv') %></h2>
+  <p><a href="/me/cv" role="button" class="secondary"><%= t('me.cv.title') %></a></p>
+
+  <hr>
+  <h2><%= t('me.export') %></h2>
+  <p><a href="/me/export"><%= t('me.export') %></a></p>
+
+  <hr>
+  <h2 class="danger"><%= t('me.delete.title') %></h2>
+  <p><a href="/me/delete" role="button" class="button-danger"><%= t('me.delete.title') %></a></p>
+</section>
+<%- include('../partials/foot') %>

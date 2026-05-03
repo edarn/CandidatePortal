@@ -1,0 +1,18 @@
+<%- include('../partials/head', { pageTitle: t('me.delete.title') }) %>
+<section>
+  <h1 class="danger"><%= t('me.delete.title') %></h1>
+  <div class="flash warning"><%= t('me.delete.warning') %></div>
+  <% if (error) { %>
+    <div class="flash error"><%= t(error) %></div>
+  <% } %>
+  <form method="post" action="/me/delete" novalidate>
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <label>
+      <%= t('me.delete.confirm') %>
+      <input type="text" name="confirm" required autocomplete="off" autofocus>
+    </label>
+    <button type="submit" class="button-danger"><%= t('me.delete.submit') %></button>
+    <a href="/me" role="button" class="secondary"><%= t('common.cancel') %></a>
+  </form>
+</section>
+<%- include('../partials/foot') %>
