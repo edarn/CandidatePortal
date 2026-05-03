@@ -65,25 +65,28 @@ const rateLimitHandler = (redirectTo) => (req, res) => {
 
 const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  limit: 5,
+  limit: 20,
   standardHeaders: true,
   legacyHeaders: false,
+  skipSuccessfulRequests: true,
   handler: rateLimitHandler('/login'),
 });
 
 const registerLimiter = rateLimit({
   windowMs: 60 * 60 * 1000,
-  limit: 3,
+  limit: 10,
   standardHeaders: true,
   legacyHeaders: false,
+  skipSuccessfulRequests: true,
   handler: rateLimitHandler('/register'),
 });
 
 const forgotLimiter = rateLimit({
   windowMs: 60 * 60 * 1000,
-  limit: 3,
+  limit: 10,
   standardHeaders: true,
   legacyHeaders: false,
+  skipSuccessfulRequests: true,
   handler: rateLimitHandler('/forgot-password'),
 });
 
@@ -123,7 +126,7 @@ router.get('/register', (req, res) => {
   res.render('auth/register', { values: {}, errors: {} });
 });
 
-router.post('/register', registerLimiter, csrfProtection, async (req, res) => {
+router.post('/register', csrfProtection, registerLimiter, async (req, res) => {
   const parsed = registerSchema.safeParse(req.body);
   if (!parsed.success) {
     return res.status(400).render('auth/register', {
@@ -193,7 +196,7 @@ router.get('/login', (req, res) => {
   res.render('auth/login', { values: {}, errors: {} });
 });
 
-router.post('/login', loginLimiter, csrfProtection, async (req, res) => {
+router.post('/login', csrfProtection, loginLimiter, async (req, res) => {
   const parsed = loginSchema.safeParse(req.body);
   if (!parsed.success) {
     return res.status(400).render('auth/login', {
@@ -252,7 +255,7 @@ router.get('/forgot-password', (req, res) => {
   res.render('auth/forgot-password', { values: {}, errors: {}, sent: false });
 });
 
-router.post('/forgot-password', forgotLimiter, csrfProtection, async (req, res) => {
+router.post('/forgot-password', csrfProtection, forgotLimiter, async (req, res) => {
   const parsed = forgotSchema.safeParse(req.body);
   if (!parsed.success) {
     return res.status(400).render('auth/forgot-password', {

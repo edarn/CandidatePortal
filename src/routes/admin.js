@@ -40,9 +40,10 @@ const findUserByEmail = db.prepare(
 
 const adminLoginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  limit: 5,
+  limit: 20,
   standardHeaders: true,
   legacyHeaders: false,
+  skipSuccessfulRequests: true,
   handler: (req, res) => {
     setFlash(req, 'error', res.locals.t('errors.rateLimited'));
     res.redirect('/admin/login');
@@ -59,7 +60,7 @@ router.get('/login', (req, res) => {
   res.render('admin/login', { values: {}, errors: {} });
 });
 
-router.post('/login', adminLoginLimiter, csrfProtection, async (req, res) => {
+router.post('/login', csrfProtection, adminLoginLimiter, async (req, res) => {
   const parsed = adminLoginSchema.safeParse(req.body);
   if (!parsed.success) {
     return res.status(400).render('admin/login', {
