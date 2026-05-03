@@ -1,16 +1,25 @@
 import { runMigrations } from './db/migrate.js';
-import { bootstrapAdminFromEnv } from '../scripts/bootstrap-admin-from-env.js';
-import { createApp } from './app.js';
 import { config } from './config.js';
-import { registerDailyBackup } from './jobs/dailyBackup.js';
-import { registerInactivityCleanup } from './jobs/inactivityCleanup.js';
 
+// Migrations must run *before* any module that prepares SQL statements
+// is imported. better-sqlite3 validates table existence at prepare time,
+// so importing routes/middleware on a fresh DB would otherwise throw
+// "no such table". Hence the dynamic imports below.
 runMigrations();
+
+const { bootstrapAdminFromEnv } = await import(
+  '../scripts/bootstrap-admin-from-env.js'
+);
 await bootstrapAdminFromEnv();
 
+const { createApp } = await import('./app.js');
 const app = createApp();
 
 if (config.isProd) {
+  const { registerDailyBackup } = await import('./jobs/dailyBackup.js');
+  const { registerInactivityCleanup } = await import(
+    './jobs/inactivityCleanup.js'
+  );
   registerDailyBackup();
   registerInactivityCleanup();
 } else {
