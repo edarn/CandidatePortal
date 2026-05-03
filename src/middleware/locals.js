@@ -4,19 +4,6 @@ import { generateCsrfToken } from './csrf.js';
 const getSetting = db.prepare('SELECT value FROM settings WHERE key = ?');
 
 export function locals(req, res, next) {
-  if (req.path === '/admin/login' || req.path === '/login') {
-    console.log(
-      `[csrf-debug] ${req.method} ${req.path} ` +
-        `sid=${(req.sessionID || '').slice(0, 8)} ` +
-        `session.csrfToken=${(req.session?.csrfToken || '').slice(0, 8) || 'none'} ` +
-        `body._csrf=${(req.body?._csrf || '').slice(0, 8) || 'none'} ` +
-        `cookies=[${Object.keys(req.cookies || {}).join('|') || 'none'}] ` +
-        `req.secure=${req.secure} ` +
-        `xfp=${req.headers['x-forwarded-proto'] || 'none'} ` +
-        `host=${req.headers.host}`,
-    );
-  }
-
   res.locals.user = req.session?.user || null;
 
   const logoRow = getSetting.get('logo_filename');

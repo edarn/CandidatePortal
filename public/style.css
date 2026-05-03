@@ -33,6 +33,29 @@ header.site-header .brand img {
   width: auto;
 }
 
+header.site-header .brand-area {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+header.site-header .admin-login-link {
+  font-size: 0.82em;
+  text-decoration: none;
+  color: var(--pico-muted-color);
+  padding: 0.25em 0.65em;
+  border: 1px solid var(--pico-muted-border-color);
+  border-radius: 0.25rem;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+header.site-header .admin-login-link:hover {
+  color: var(--pico-primary);
+  border-color: var(--pico-primary);
+}
+
 header.site-header nav {
   display: flex;
   align-items: center;

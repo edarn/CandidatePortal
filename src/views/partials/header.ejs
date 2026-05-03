@@ -1,11 +1,16 @@
 <header class="site-header">
-  <a href="/" class="brand">
-    <% if (logoFilename) { %>
-      <img src="/branding/logo" alt="<%= t('site.title') %>">
-    <% } else { %>
-      <span><%= t('site.title') %></span>
+  <div class="brand-area">
+    <a href="/" class="brand">
+      <% if (logoFilename) { %>
+        <img src="/branding/logo" alt="<%= t('site.title') %>">
+      <% } else { %>
+        <span><%= t('site.title') %></span>
+      <% } %>
+    </a>
+    <% if (!user) { %>
+      <a href="/admin/login" class="admin-login-link">AdminLogin</a>
     <% } %>
-  </a>
+  </div>
   <nav>
     <% if (user) { %>
       <% if (user.role === 'admin') { %>
