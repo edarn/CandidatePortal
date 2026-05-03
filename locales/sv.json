@@ -1,0 +1,223 @@
+{
+  "site": {
+    "title": "CandidatePortal",
+    "tagline": "Samla in kontaktuppgifter och CV"
+  },
+  "nav": {
+    "register": "Registrera",
+    "login": "Logga in",
+    "logout": "Logga ut",
+    "myProfile": "Min profil",
+    "myCv": "Mitt CV",
+    "admin": "Admin",
+    "privacy": "Integritetspolicy"
+  },
+  "common": {
+    "save": "Spara",
+    "cancel": "Avbryt",
+    "delete": "Ta bort",
+    "edit": "Redigera",
+    "submit": "Skicka",
+    "back": "Tillbaka",
+    "loading": "Laddar...",
+    "yes": "Ja",
+    "no": "Nej",
+    "create": "Skapa",
+    "search": "Sök",
+    "actions": "Åtgärder",
+    "download": "Ladda ner",
+    "upload": "Ladda upp",
+    "all": "Alla"
+  },
+  "fields": {
+    "fullName": "Fullständigt namn",
+    "email": "E-postadress",
+    "phone": "Telefonnummer",
+    "password": "Lösenord",
+    "passwordConfirm": "Bekräfta lösenord",
+    "newPassword": "Nytt lösenord",
+    "linkedin": "LinkedIn-URL",
+    "currentRole": "Nuvarande roll",
+    "currentCompany": "Nuvarande företag",
+    "location": "Plats",
+    "summary": "Kort beskrivning",
+    "consent": "Jag samtycker till att mina uppgifter sparas för rekryteringsändamål",
+    "tagName": "Namn",
+    "tagColor": "Färg (hex, t.ex. #3b82f6)"
+  },
+  "public": {
+    "indexTitle": "Välkommen",
+    "indexLead": "Skapa ett konto för att lämna dina kontaktuppgifter och CV.",
+    "ctaRegister": "Skapa konto",
+    "ctaLogin": "Logga in"
+  },
+  "auth": {
+    "register": {
+      "title": "Skapa konto",
+      "submit": "Registrera",
+      "consentLink": "Läs integritetspolicyn",
+      "haveAccount": "Har du redan ett konto?",
+      "loginLink": "Logga in"
+    },
+    "login": {
+      "title": "Logga in",
+      "submit": "Logga in",
+      "noAccount": "Inget konto än?",
+      "registerLink": "Registrera dig",
+      "forgotPassword": "Glömt lösenord?"
+    },
+    "verify": {
+      "pendingTitle": "Verifiera din e-post",
+      "pendingBody": "Vi har skickat ett mejl till dig. Klicka på länken i mejlet för att aktivera ditt konto.",
+      "successTitle": "E-post verifierad",
+      "successBody": "Din e-post är verifierad. Du kan logga in nu.",
+      "expired": "Verifieringslänken är ogiltig eller har gått ut.",
+      "loginLink": "Gå till inloggning"
+    },
+    "forgot": {
+      "title": "Glömt lösenord",
+      "instructions": "Ange din e-postadress så skickar vi en återställningslänk.",
+      "submit": "Skicka länk",
+      "sent": "Om e-postadressen finns hos oss har vi skickat en återställningslänk."
+    },
+    "reset": {
+      "title": "Välj nytt lösenord",
+      "submit": "Spara nytt lösenord",
+      "expired": "Återställningslänken är ogiltig eller har gått ut.",
+      "success": "Lösenord uppdaterat. Logga in med ditt nya lösenord."
+    },
+    "loggedOut": "Du är utloggad."
+  },
+  "admin": {
+    "loginTitle": "Admin-inloggning",
+    "list": {
+      "title": "Kandidater",
+      "search": "Sök på namn eller e-post",
+      "filterTag": "Filtrera på tagg",
+      "noResults": "Inga kandidater matchar.",
+      "addedAt": "Tillagd",
+      "verified": "Verifierad",
+      "notVerified": "Ej verifierad",
+      "sort": "Sortering",
+      "sortDateDesc": "Senast först",
+      "sortDateAsc": "Äldst först",
+      "sortNameAsc": "Namn A-Ö",
+      "sortNameDesc": "Namn Ö-A",
+      "previewNotAvailable": "Förhandsvisning finns endast för PDF.",
+      "noteAdded": "Anteckning sparad."
+    },
+    "candidate": {
+      "title": "Kandidatdetaljer",
+      "registeredAt": "Registrerad",
+      "notes": "Anteckningar",
+      "addNote": "Ny anteckning",
+      "noteText": "Anteckning",
+      "metAt": "Plats",
+      "metDate": "Datum",
+      "tags": "Taggar",
+      "noCv": "Inget CV uppladdat",
+      "downloadCv": "Ladda ner CV",
+      "deleteCandidate": "Radera kandidat",
+      "deleteConfirm": "Är du säker? Detta raderar all data permanent."
+    },
+    "tags": {
+      "title": "Taggar",
+      "create": "Skapa tagg",
+      "noTags": "Inga taggar än."
+    },
+    "settings": {
+      "title": "Inställningar",
+      "logo": "Logga",
+      "logoCurrent": "Nuvarande logga",
+      "logoNone": "Ingen logga uppladdad",
+      "logoUpload": "Ladda upp ny logga",
+      "logoHint": "PNG, JPG eller SVG, max 2 MB",
+      "logoDelete": "Ta bort logga",
+      "backup": "Backup",
+      "backupNow": "Ladda ner backup nu",
+      "backupHint": "Innehåller databas och alla CV-filer som en zip."
+    },
+    "exportCsv": "Exportera till CSV"
+  },
+  "me": {
+    "title": "Min profil",
+    "save": "Spara ändringar",
+    "saved": "Sparad.",
+    "cv": {
+      "title": "Mitt CV",
+      "current": "Nuvarande fil",
+      "uploadedAt": "Uppladdad",
+      "upload": "Ladda upp CV",
+      "uploadHint": "PDF eller Word (.doc/.docx), max 10 MB",
+      "delete": "Ta bort CV",
+      "noFile": "Inget CV uppladdat"
+    },
+    "delete": {
+      "title": "Radera mitt konto",
+      "warning": "Detta raderar all din data permanent, inklusive ditt CV. Det går inte att ångra.",
+      "submit": "Radera konto",
+      "confirm": "Skriv RADERA för att bekräfta",
+      "confirmKeyword": "RADERA"
+    },
+    "export": "Exportera min data (JSON)"
+  },
+  "errors": {
+    "generic": "Något gick fel.",
+    "invalidCredentials": "Fel e-post eller lösenord.",
+    "notVerified": "Du måste verifiera din e-post först.",
+    "rateLimited": "För många försök. Försök igen senare.",
+    "csrf": "Ogiltigt formulär. Ladda om sidan och försök igen.",
+    "emailTaken": "E-postadressen är redan registrerad.",
+    "passwordMismatch": "Lösenorden matchar inte.",
+    "consentRequired": "Du måste samtycka för att fortsätta.",
+    "fileTooBig": "Filen är för stor.",
+    "fileType": "Filtypen stöds inte.",
+    "notFound": "Sidan kunde inte hittas.",
+    "serverError": "Serverfel. Försök igen senare.",
+    "deleteConfirmWrong": "Bekräftelsefrasen stämde inte.",
+    "field": {
+      "required": "Detta fält krävs.",
+      "email": "Ogiltig e-postadress.",
+      "phone": "Ogiltigt telefonnummer.",
+      "passwordTooShort": "Lösenord måste vara minst 10 tecken.",
+      "passwordOnlyDigits": "Lösenord får inte vara enbart siffror.",
+      "passwordTooCommon": "Lösenord är för vanligt — välj något starkare.",
+      "url": "Ogiltig URL.",
+      "tooLong": "Värdet är för långt."
+    }
+  },
+  "footer": {
+    "privacy": "Integritetspolicy"
+  },
+  "flags": {
+    "sv": "Svenska",
+    "en": "Engelska"
+  },
+  "emails": {
+    "verify-email": {
+      "subject": "Verifiera din e-post",
+      "greeting": "Hej {name}",
+      "body": "Tack för att du registrerade dig på {siteName}. Klicka på länken nedan för att verifiera din e-postadress (giltig i 24 timmar):",
+      "linkText": "Verifiera e-post",
+      "ignore": "Om det inte var du som registrerade kan du strunta i detta mejl."
+    },
+    "reset-password": {
+      "subject": "Återställ ditt lösenord",
+      "greeting": "Hej",
+      "body": "Klicka på länken nedan för att välja ett nytt lösenord (giltig i 1 timme):",
+      "linkText": "Välj nytt lösenord",
+      "ignore": "Om du inte begärt detta kan du strunta i mejlet."
+    },
+    "inactivity-warning": {
+      "subject": "Ditt konto raderas snart",
+      "greeting": "Hej {name}",
+      "body": "Ditt konto på {siteName} har varit inaktivt i 12 månader och raderas automatiskt om {days} dagar. Logga in om du vill behålla det.",
+      "linkText": "Logga in nu"
+    }
+  },
+  "privacy": {
+    "title": "Integritetspolicy",
+    "intro": "Denna sida beskriver hur dina personuppgifter behandlas i CandidatePortal.",
+    "placeholder": "Här ska den fullständiga integritetspolicyn skrivas in: vilka uppgifter som samlas in, ändamål, lagringstid, dina rättigheter (tillgång, radering, rättelse), kontaktuppgifter till personuppgiftsansvarig."
+  }
+}

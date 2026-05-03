@@ -1,0 +1,147 @@
+@import url('https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css');
+
+:root {
+  --pico-typography-spacing-vertical: 1rem;
+}
+
+body > main {
+  padding-top: 0;
+}
+
+header.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--pico-muted-border-color);
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+header.site-header .brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: inherit;
+}
+
+header.site-header .brand img {
+  max-height: 40px;
+  width: auto;
+}
+
+header.site-header nav {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+header.site-header nav a {
+  text-decoration: none;
+}
+
+.lang-switcher {
+  display: inline-flex;
+  gap: 0.4rem;
+  align-items: center;
+  margin-left: 0.5rem;
+}
+
+.lang-switcher a {
+  display: inline-flex;
+  width: 28px;
+  height: 18px;
+  border: 1px solid var(--pico-muted-border-color);
+  border-radius: 2px;
+  overflow: hidden;
+  opacity: 0.55;
+  transition: opacity 0.15s;
+}
+
+.lang-switcher a:hover {
+  opacity: 1;
+}
+
+.lang-switcher a.active {
+  opacity: 1;
+  outline: 2px solid var(--pico-primary);
+  outline-offset: 1px;
+}
+
+.lang-switcher img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.flash {
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+}
+.flash.success { background: #d1fae5; color: #065f46; border-color: #6ee7b7; }
+.flash.error   { background: #fee2e2; color: #991b1b; border-color: #fca5a5; }
+.flash.info    { background: #dbeafe; color: #1e40af; border-color: #93c5fd; }
+.flash.warning { background: #fef3c7; color: #92400e; border-color: #fcd34d; }
+
+.field-error {
+  color: #991b1b;
+  font-size: 0.875em;
+  margin-top: 0.25rem;
+}
+
+.cv-preview {
+  width: 100%;
+  height: 800px;
+  border: 1px solid var(--pico-muted-border-color);
+  border-radius: 0.25rem;
+}
+
+.tag-pill {
+  display: inline-block;
+  padding: 0.125rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.85em;
+  background: #6b7280;
+  color: white;
+  margin-right: 0.25rem;
+  text-decoration: none;
+}
+
+.candidates-table {
+  width: 100%;
+}
+.candidates-table th { text-align: left; }
+.candidates-table td a { text-decoration: none; }
+
+.danger {
+  color: #991b1b;
+}
+
+.button-danger {
+  background: #dc2626;
+  border-color: #dc2626;
+  color: white;
+}
+
+.muted {
+  color: var(--pico-muted-color);
+}
+
+.inline-form {
+  display: inline;
+}
+
+footer.site-footer {
+  margin-top: 4rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--pico-muted-border-color);
+  text-align: center;
+  font-size: 0.9em;
+  color: var(--pico-muted-color);
+}

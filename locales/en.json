@@ -1,0 +1,223 @@
+{
+  "site": {
+    "title": "CandidatePortal",
+    "tagline": "Collect contact info and CVs"
+  },
+  "nav": {
+    "register": "Register",
+    "login": "Log in",
+    "logout": "Log out",
+    "myProfile": "My profile",
+    "myCv": "My CV",
+    "admin": "Admin",
+    "privacy": "Privacy policy"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "submit": "Submit",
+    "back": "Back",
+    "loading": "Loading...",
+    "yes": "Yes",
+    "no": "No",
+    "create": "Create",
+    "search": "Search",
+    "actions": "Actions",
+    "download": "Download",
+    "upload": "Upload",
+    "all": "All"
+  },
+  "fields": {
+    "fullName": "Full name",
+    "email": "Email address",
+    "phone": "Phone number",
+    "password": "Password",
+    "passwordConfirm": "Confirm password",
+    "newPassword": "New password",
+    "linkedin": "LinkedIn URL",
+    "currentRole": "Current role",
+    "currentCompany": "Current company",
+    "location": "Location",
+    "summary": "Short summary",
+    "consent": "I consent to my information being stored for recruitment purposes",
+    "tagName": "Name",
+    "tagColor": "Color (hex, e.g. #3b82f6)"
+  },
+  "public": {
+    "indexTitle": "Welcome",
+    "indexLead": "Create an account to share your contact details and CV.",
+    "ctaRegister": "Create account",
+    "ctaLogin": "Log in"
+  },
+  "auth": {
+    "register": {
+      "title": "Create account",
+      "submit": "Register",
+      "consentLink": "Read the privacy policy",
+      "haveAccount": "Already have an account?",
+      "loginLink": "Log in"
+    },
+    "login": {
+      "title": "Log in",
+      "submit": "Log in",
+      "noAccount": "No account yet?",
+      "registerLink": "Register",
+      "forgotPassword": "Forgot password?"
+    },
+    "verify": {
+      "pendingTitle": "Verify your email",
+      "pendingBody": "We've sent you an email. Click the link in that email to activate your account.",
+      "successTitle": "Email verified",
+      "successBody": "Your email is verified. You can log in now.",
+      "expired": "The verification link is invalid or has expired.",
+      "loginLink": "Go to login"
+    },
+    "forgot": {
+      "title": "Forgot password",
+      "instructions": "Enter your email address and we'll send you a reset link.",
+      "submit": "Send link",
+      "sent": "If that email is registered, we've sent a reset link."
+    },
+    "reset": {
+      "title": "Choose a new password",
+      "submit": "Save new password",
+      "expired": "The reset link is invalid or has expired.",
+      "success": "Password updated. Log in with your new password."
+    },
+    "loggedOut": "You have been logged out."
+  },
+  "admin": {
+    "loginTitle": "Admin login",
+    "list": {
+      "title": "Candidates",
+      "search": "Search by name or email",
+      "filterTag": "Filter by tag",
+      "noResults": "No candidates match.",
+      "addedAt": "Added",
+      "verified": "Verified",
+      "notVerified": "Not verified",
+      "sort": "Sort",
+      "sortDateDesc": "Newest first",
+      "sortDateAsc": "Oldest first",
+      "sortNameAsc": "Name A-Z",
+      "sortNameDesc": "Name Z-A",
+      "previewNotAvailable": "Inline preview is only available for PDF.",
+      "noteAdded": "Note saved."
+    },
+    "candidate": {
+      "title": "Candidate details",
+      "registeredAt": "Registered",
+      "notes": "Notes",
+      "addNote": "New note",
+      "noteText": "Note",
+      "metAt": "Location",
+      "metDate": "Date",
+      "tags": "Tags",
+      "noCv": "No CV uploaded",
+      "downloadCv": "Download CV",
+      "deleteCandidate": "Delete candidate",
+      "deleteConfirm": "Are you sure? This permanently deletes all data."
+    },
+    "tags": {
+      "title": "Tags",
+      "create": "Create tag",
+      "noTags": "No tags yet."
+    },
+    "settings": {
+      "title": "Settings",
+      "logo": "Logo",
+      "logoCurrent": "Current logo",
+      "logoNone": "No logo uploaded",
+      "logoUpload": "Upload new logo",
+      "logoHint": "PNG, JPG or SVG, max 2 MB",
+      "logoDelete": "Remove logo",
+      "backup": "Backup",
+      "backupNow": "Download backup now",
+      "backupHint": "Contains the database and all CV files as a zip."
+    },
+    "exportCsv": "Export to CSV"
+  },
+  "me": {
+    "title": "My profile",
+    "save": "Save changes",
+    "saved": "Saved.",
+    "cv": {
+      "title": "My CV",
+      "current": "Current file",
+      "uploadedAt": "Uploaded",
+      "upload": "Upload CV",
+      "uploadHint": "PDF or Word (.doc/.docx), max 10 MB",
+      "delete": "Remove CV",
+      "noFile": "No CV uploaded"
+    },
+    "delete": {
+      "title": "Delete my account",
+      "warning": "This permanently deletes all your data, including your CV. This cannot be undone.",
+      "submit": "Delete account",
+      "confirm": "Type DELETE to confirm",
+      "confirmKeyword": "DELETE"
+    },
+    "export": "Export my data (JSON)"
+  },
+  "errors": {
+    "generic": "Something went wrong.",
+    "invalidCredentials": "Wrong email or password.",
+    "notVerified": "You must verify your email first.",
+    "rateLimited": "Too many attempts. Try again later.",
+    "csrf": "Invalid form submission. Reload the page and try again.",
+    "emailTaken": "That email address is already registered.",
+    "passwordMismatch": "Passwords do not match.",
+    "consentRequired": "You must consent to continue.",
+    "fileTooBig": "File is too large.",
+    "fileType": "File type is not supported.",
+    "notFound": "Page not found.",
+    "serverError": "Server error. Please try again later.",
+    "deleteConfirmWrong": "Confirmation phrase did not match.",
+    "field": {
+      "required": "This field is required.",
+      "email": "Invalid email address.",
+      "phone": "Invalid phone number.",
+      "passwordTooShort": "Password must be at least 10 characters.",
+      "passwordOnlyDigits": "Password cannot be only digits.",
+      "passwordTooCommon": "Password is too common — choose a stronger one.",
+      "url": "Invalid URL.",
+      "tooLong": "Value is too long."
+    }
+  },
+  "footer": {
+    "privacy": "Privacy policy"
+  },
+  "flags": {
+    "sv": "Swedish",
+    "en": "English"
+  },
+  "emails": {
+    "verify-email": {
+      "subject": "Verify your email",
+      "greeting": "Hi {name}",
+      "body": "Thanks for registering at {siteName}. Click the link below to verify your email address (valid for 24 hours):",
+      "linkText": "Verify email",
+      "ignore": "If you didn't register, you can ignore this email."
+    },
+    "reset-password": {
+      "subject": "Reset your password",
+      "greeting": "Hi",
+      "body": "Click the link below to choose a new password (valid for 1 hour):",
+      "linkText": "Choose new password",
+      "ignore": "If you didn't request this, you can ignore this email."
+    },
+    "inactivity-warning": {
+      "subject": "Your account will be deleted soon",
+      "greeting": "Hi {name}",
+      "body": "Your account at {siteName} has been inactive for 12 months and will be automatically deleted in {days} days. Log in if you want to keep it.",
+      "linkText": "Log in now"
+    }
+  },
+  "privacy": {
+    "title": "Privacy policy",
+    "intro": "This page describes how your personal data is processed in CandidatePortal.",
+    "placeholder": "The full privacy policy goes here: which data is collected, purposes, retention, your rights (access, deletion, rectification), contact details for the data controller."
+  }
+}
