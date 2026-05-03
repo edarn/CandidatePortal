@@ -65,7 +65,10 @@ export function createApp() {
       saveUninitialized: false,
       cookie: {
         httpOnly: true,
-        secure: config.isProd,
+        // 'auto' sätter Secure-flaggan när req.secure är true (HTTPS via
+        // trust proxy), men sparar fortfarande cookien om proxy-detektionen
+        // misslyckas. 'true' skulle skippa cookie-sättning helt → CSRF-fel.
+        secure: config.isProd ? 'auto' : false,
         sameSite: 'lax',
         maxAge: 30 * 24 * 60 * 60 * 1000,
       },
