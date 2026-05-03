@@ -1,0 +1,27 @@
+node_modules/
+.env
+.env.local
+.env.*.local
+
+# Runtime data (DB, uploads, branding, backups)
+data/
+*.sqlite
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Tooling
+.claude/
+dist/
+coverage/
+.nyc_output/
