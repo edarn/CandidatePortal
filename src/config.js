@@ -14,8 +14,14 @@ const envSchema = z.object({
   BRANDING_DIR: z.string().default('./data/branding'),
   BACKUPS_DIR: z.string().default('./data/backups'),
 
-  RESEND_API_KEY: optionalString,
-  EMAIL_FROM: optionalString,
+  SMTP_HOST: z.string().default('smtp.gmail.com'),
+  SMTP_PORT: z.coerce.number().int().positive().default(465),
+  SMTP_SECURE: z
+    .union([z.boolean(), z.string().transform((v) => v === 'true' || v === '1')])
+    .default(true),
+  SMTP_USER: optionalString,
+  SMTP_PASS: optionalString,
+  SMTP_FROM: optionalString,
 
   ADMIN_BOOTSTRAP_EMAIL: optionalString,
   ADMIN_BOOTSTRAP_PASSWORD: optionalString,
@@ -51,7 +57,7 @@ if (!parsed.success) {
 
 const env = parsed.data;
 
-const emailReady = Boolean(env.RESEND_API_KEY);
+const smtpReady = Boolean(env.SMTP_USER && env.SMTP_PASS && env.SMTP_FROM);
 
 export const config = {
   env: env.NODE_ENV,
@@ -68,10 +74,14 @@ export const config = {
   brandingDir: path.resolve(env.BRANDING_DIR),
   backupsDir: path.resolve(env.BACKUPS_DIR),
 
-  email: {
-    ready: emailReady,
-    apiKey: env.RESEND_API_KEY,
-    from: env.EMAIL_FROM || 'CandidatePortal <onboarding@resend.dev>',
+  smtp: {
+    ready: smtpReady,
+    host: env.SMTP_HOST,
+    port: env.SMTP_PORT,
+    secure: env.SMTP_SECURE,
+    user: env.SMTP_USER,
+    pass: env.SMTP_PASS,
+    from: env.SMTP_FROM,
   },
 
   adminBootstrap:

@@ -32,8 +32,8 @@ Open `.env` and fill in:
   ```bash
   node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
   ```
-- `RESEND_API_KEY` — sign up at https://resend.com, generate an API key in the dashboard
-- `EMAIL_FROM` — the From address. For testing without a custom domain, use `CandidatePortal <onboarding@resend.dev>` (note: sandbox sender only delivers to the email that owns the Resend account). With a verified domain you can send to anyone.
+- `SMTP_USER` / `SMTP_PASS` — Gmail address + 16-char [App Password](https://myaccount.google.com/apppasswords) (requires 2-Step Verification on the Google account)
+- `SMTP_FROM` — what appears in the From field, e.g. `CandidatePortal <your.address@gmail.com>`
 - `ADMIN_BOOTSTRAP_EMAIL` and `ADMIN_BOOTSTRAP_PASSWORD` — used once at first startup to create the admin user. Clear after the admin exists.
 
 ### 3. Run
@@ -68,8 +68,12 @@ If you leave `SMTP_*` empty, verification and reset emails are **logged to the c
    | `UPLOADS_DIR` | `/data/uploads` |
    | `BRANDING_DIR` | `/data/branding` |
    | `BACKUPS_DIR` | `/data/backups` |
-   | `RESEND_API_KEY` | your Resend API key (`re_…`) |
-   | `EMAIL_FROM` | `CandidatePortal <noreply@yourdomain.com>` (or `<onboarding@resend.dev>` for testing) |
+   | `SMTP_HOST` | `smtp.gmail.com` |
+   | `SMTP_PORT` | `465` |
+   | `SMTP_SECURE` | `true` |
+   | `SMTP_USER` | your Gmail address |
+   | `SMTP_PASS` | your 16-char App Password |
+   | `SMTP_FROM` | `CandidatePortal <your.address@gmail.com>` |
    | `ADMIN_BOOTSTRAP_EMAIL` | one-time |
    | `ADMIN_BOOTSTRAP_PASSWORD` | one-time, ≥10 chars |
 
