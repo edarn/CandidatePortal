@@ -19,7 +19,10 @@ function pageUrl(p) {
       <tbody>
       <% rows.forEach(function(row) { %>
         <tr>
-          <td><a href="/admin/candidate/<%= row.id %>"><%= row.full_name %></a></td>
+          <td class="name-cell">
+            <span class="avatar" style="background: <%= avatarGradient(row.full_name) %>"><%= initials(row.full_name) %></span>
+            <a href="/admin/candidate/<%= row.id %>"><%= row.full_name %></a>
+          </td>
           <td>
             <%= row.email %>
             <% if (!row.email_verified_at) { %><span class="muted" style="font-size: 0.8em;">(<%= t('admin.list.notVerified') %>)</span><% } %>

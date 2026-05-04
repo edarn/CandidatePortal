@@ -438,6 +438,31 @@ table td a { color: #4f46e5; font-weight: 500; }
 }
 .auth-card .auth-links p { margin-bottom: 0.4rem; }
 
+/* --- Avatars --- */
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: white;
+  margin-right: 0.55rem;
+  vertical-align: middle;
+  letter-spacing: 0.03em;
+  flex-shrink: 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Name column: keep names on a single row --- */
+table td.name-cell,
+table th:first-child {
+  white-space: nowrap;
+  min-width: 240px;
+}
+
 /* --- Stats banner (admin) --- */
 .stats-banner {
   display: grid;
