@@ -23,6 +23,10 @@ const envSchema = z.object({
   SMTP_PASS: optionalString,
   SMTP_FROM: optionalString,
 
+  SKIP_EMAIL_VERIFICATION: z
+    .union([z.boolean(), z.string().transform((v) => v === '1' || v === 'true')])
+    .default(false),
+
   ADMIN_BOOTSTRAP_EMAIL: optionalString,
   ADMIN_BOOTSTRAP_PASSWORD: optionalString,
 
@@ -83,6 +87,8 @@ export const config = {
     pass: env.SMTP_PASS,
     from: env.SMTP_FROM,
   },
+
+  skipEmailVerification: env.SKIP_EMAIL_VERIFICATION,
 
   adminBootstrap:
     env.ADMIN_BOOTSTRAP_EMAIL && env.ADMIN_BOOTSTRAP_PASSWORD

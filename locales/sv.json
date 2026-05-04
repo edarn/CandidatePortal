@@ -57,7 +57,8 @@
       "submit": "Registrera",
       "consentLink": "Läs integritetspolicyn",
       "haveAccount": "Har du redan ett konto?",
-      "loginLink": "Logga in"
+      "loginLink": "Logga in",
+      "welcome": "Välkommen! Ditt konto är skapat."
     },
     "login": {
       "title": "Logga in",

@@ -26,6 +26,9 @@ const findUserByEmail = db.prepare(
 const insertUser = db.prepare(
   'INSERT INTO users (email, password_hash, role) VALUES (?, ?, ?) RETURNING id',
 );
+const insertUserVerified = db.prepare(
+  "INSERT INTO users (email, password_hash, role, email_verified_at) VALUES (?, ?, 'candidate', datetime('now')) RETURNING id",
+);
 const insertCandidate = db.prepare(`
   INSERT INTO candidates (user_id, full_name, phone, preferred_locale, consent_given_at)
   VALUES (?, ?, ?, ?, datetime('now'))
@@ -144,6 +147,30 @@ router.post('/register', csrfProtection, registerLimiter, async (req, res) => {
   }
 
   const hash = await bcrypt.hash(password, BCRYPT_COST);
+
+  // Demo-mode: skip email verification, mark account as verified at insert
+  // time, auto-login, redirect to /me. Toggle via SKIP_EMAIL_VERIFICATION
+  // env var so the normal flow can be re-enabled without a code change.
+  if (config.skipEmailVerification) {
+    const insertAll = db.transaction((data) => {
+      const { id } = insertUserVerified.get(data.email, data.hash);
+      insertCandidate.run(id, data.full_name, data.phone, data.locale);
+      return id;
+    });
+    const userId = insertAll({ email, hash, full_name, phone, locale: req.locale });
+
+    req.session.regenerate((err) => {
+      if (err) return res.status(500).render('errors/500');
+      req.session.user = { id: userId, email, role: 'candidate' };
+      req.session.save((err2) => {
+        if (err2) return res.status(500).render('errors/500');
+        setFlash(req, 'success', res.locals.t('auth.register.welcome'));
+        res.redirect('/me');
+      });
+    });
+    return;
+  }
+
   const token = generateToken();
 
   const insertAll = db.transaction((data) => {

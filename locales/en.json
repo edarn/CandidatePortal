@@ -57,7 +57,8 @@
       "submit": "Register",
       "consentLink": "Read the privacy policy",
       "haveAccount": "Already have an account?",
-      "loginLink": "Log in"
+      "loginLink": "Log in",
+      "welcome": "Welcome! Your account has been created."
     },
     "login": {
       "title": "Log in",
