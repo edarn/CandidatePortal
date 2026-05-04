@@ -25,3 +25,6 @@ Thumbs.db
 dist/
 coverage/
 .nyc_output/
+
+# Original artwork (split halves are committed under public/)
+2 icons.png
