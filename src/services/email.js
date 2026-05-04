@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 import ejs from 'ejs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -8,25 +8,12 @@ import { tFor } from './i18n.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const emailsDir = path.join(__dirname, '..', 'views', 'emails');
 
-let transporter = null;
+let client = null;
 
-function getTransporter() {
-  if (!config.smtp.ready) return null;
-  if (!transporter) {
-    transporter = nodemailer.createTransport({
-      host: config.smtp.host,
-      port: config.smtp.port,
-      secure: config.smtp.secure,
-      auth: {
-        user: config.smtp.user,
-        pass: config.smtp.pass,
-      },
-      connectionTimeout: 10_000,
-      greetingTimeout: 10_000,
-      socketTimeout: 20_000,
-    });
-  }
-  return transporter;
+function getClient() {
+  if (!config.email.ready) return null;
+  if (!client) client = new Resend(config.email.apiKey);
+  return client;
 }
 
 export async function sendMail({ to, locale = 'sv', template, vars = {} }) {
@@ -43,31 +30,33 @@ export async function sendMail({ to, locale = 'sv', template, vars = {} }) {
     siteName,
   });
 
-  const tx = getTransporter();
-  if (!tx) {
+  const c = getClient();
+  if (!c) {
     if (!config.isProd) {
       console.log(`[email:dev] to=${to} template=${template} subject="${subject}"`);
       console.log(`[email:dev] vars=${JSON.stringify(vars)}`);
       return { devMode: true };
     }
-    throw new Error('SMTP not configured');
+    throw new Error('Email not configured (RESEND_API_KEY missing)');
   }
 
-  return tx.sendMail({
-    from: config.smtp.from,
+  const { data, error } = await c.emails.send({
+    from: config.email.from,
     to,
     subject,
     html,
   });
+
+  if (error) {
+    const msg = error.message || error.name || JSON.stringify(error);
+    throw new Error(`Resend error: ${msg}`);
+  }
+  return data;
 }
 
 export async function verifyEmailTransport() {
-  const tx = getTransporter();
-  if (!tx) return { ok: false, reason: 'not configured' };
-  try {
-    await tx.verify();
-    return { ok: true };
-  } catch (err) {
-    return { ok: false, reason: err.message };
+  if (!config.email.ready) {
+    return { ok: false, reason: 'RESEND_API_KEY not configured' };
   }
+  return { ok: true };
 }
