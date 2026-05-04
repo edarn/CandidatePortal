@@ -2,7 +2,6 @@
 <p style="margin-bottom: 1rem;"><a href="/admin">&larr; <%= t('common.back') %></a></p>
 
 <article class="candidate-hero" style="background: <%= avatarGradient(candidate.full_name) %>">
-  <div class="avatar avatar-large"><%= initials(candidate.full_name) %></div>
   <h1><%= candidate.full_name %></h1>
   <% if (candidate.current_role || candidate.current_company) { %>
     <p class="subtitle">

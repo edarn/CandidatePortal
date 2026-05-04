@@ -34,11 +34,16 @@ export function initials(name) {
     .toUpperCase();
 }
 
+// Cache-bust query string for static assets — fixed per process, so it
+// changes on every deploy/restart and forces browsers to refetch CSS/JS.
+const APP_VERSION = String(Date.now());
+
 export function locals(req, res, next) {
   res.locals.user = req.session?.user || null;
   res.locals.avatarColor = avatarColor;
   res.locals.avatarGradient = avatarGradient;
   res.locals.initials = initials;
+  res.locals.appVersion = APP_VERSION;
 
   const logoRow = getSetting.get('logo_filename');
   res.locals.logoFilename = logoRow?.value || null;

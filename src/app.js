@@ -50,6 +50,8 @@ export function createApp() {
 
   app.use(
     express.static(path.join(__dirname, '..', 'public'), {
+      // We add ?v=<appVersion> to CSS/JS URLs so we can be aggressive with
+      // browser caching. Other static assets (flag SVGs etc.) don't change.
       maxAge: config.isProd ? '7d' : 0,
     }),
   );

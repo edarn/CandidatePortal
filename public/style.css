@@ -438,34 +438,6 @@ table td a { color: #4f46e5; font-weight: 500; }
 }
 .auth-card .auth-links p { margin-bottom: 0.4rem; }
 
-/* --- Avatars --- */
-.avatar {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: white;
-  margin-right: 0.55rem;
-  vertical-align: middle;
-  letter-spacing: 0.03em;
-  flex-shrink: 0;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-}
-
-.avatar-large {
-  width: 84px;
-  height: 84px;
-  font-size: 1.85rem;
-  margin: 0 auto 0.85rem;
-  background: rgba(255, 255, 255, 0.22) !important;
-  border: 3px solid rgba(255, 255, 255, 0.45);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
-}
-
 /* --- Stats banner (admin) --- */
 .stats-banner {
   display: grid;
@@ -594,12 +566,16 @@ table td a { color: #4f46e5; font-weight: 500; }
   margin-bottom: 1rem;
 }
 .filter-bar > * { margin: 0; }
+/* Override the global `width: 100%` on inputs so flex-basis decides the
+   width instead — otherwise each input wraps to its own row. */
 .filter-bar input[type="search"] {
   flex: 1 1 240px;
+  width: auto;
   margin: 0;
 }
 .filter-bar select {
   flex: 0 0 auto;
+  width: auto;
   margin: 0;
   min-width: 140px;
 }
