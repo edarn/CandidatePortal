@@ -455,8 +455,10 @@ table td a { color: #4f46e5; font-weight: 500; }
 /* --- Filter bar (live-search) --- */
 .filter-bar {
   display: flex;
+  flex-direction: row;
   gap: 0.5rem;
   flex-wrap: wrap;
+  align-items: center;
   margin-bottom: 1rem;
 }
 .filter-bar > * { margin: 0; }
