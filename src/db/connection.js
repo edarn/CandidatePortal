@@ -18,13 +18,12 @@ if (fs.existsSync(dbPath) && fs.statSync(dbPath).isDirectory()) {
     );
     fs.rmdirSync(dbPath);
   } else {
-    console.error(
-      `FATAL: DATABASE_PATH "${dbPath}" exists as a non-empty directory.\n` +
-        `This usually means BRANDING_DIR or UPLOADS_DIR previously pointed here.\n` +
-        `Fix: change DATABASE_PATH to a different filename (e.g. /data/app.sqlite) ` +
-        `or remove the directory via your hosting provider's volume shell.`,
+    const backupName = `${dbPath}.broken-${Date.now()}`;
+    console.warn(
+      `[db] Stale non-empty directory at DATABASE_PATH "${dbPath}". ` +
+        `Moving to "${backupName}" so the DB file can be created.`,
     );
-    process.exit(1);
+    fs.renameSync(dbPath, backupName);
   }
 }
 
