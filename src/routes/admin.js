@@ -122,6 +122,14 @@ const insertNote = db.prepare(
 const deleteNote = db.prepare('DELETE FROM admin_notes WHERE id = ?');
 
 const allTags = db.prepare('SELECT id, name, color FROM tags ORDER BY name COLLATE NOCASE');
+
+const getStats = db.prepare(`
+  SELECT
+    (SELECT COUNT(*) FROM users WHERE role = 'candidate') AS total_candidates,
+    (SELECT COUNT(*) FROM users WHERE role = 'candidate' AND email_verified_at IS NOT NULL) AS verified_count,
+    (SELECT COUNT(*) FROM tags) AS tags_count,
+    (SELECT COUNT(*) FROM users WHERE role = 'candidate' AND created_at > datetime('now', '-7 days')) AS new_this_week
+`);
 const tagsForCandidate = db.prepare(
   'SELECT tag_id FROM candidate_tags WHERE candidate_user_id = ?',
 );
@@ -226,6 +234,7 @@ router.get('/', (req, res) => {
     currentParams,
     csvQuery,
     allTags: allTags.all(),
+    stats: getStats.get(),
   });
 });
 

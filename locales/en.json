@@ -91,6 +91,12 @@
   },
   "admin": {
     "loginTitle": "Admin login",
+    "stats": {
+      "candidates": "Candidates",
+      "verified": "Verified",
+      "tags": "Tags",
+      "newThisWeek": "New this week"
+    },
     "list": {
       "title": "Candidates",
       "search": "Search by name or email",

@@ -91,6 +91,12 @@
   },
   "admin": {
     "loginTitle": "Admin-inloggning",
+    "stats": {
+      "candidates": "Kandidater",
+      "verified": "Verifierade",
+      "tags": "Taggar",
+      "newThisWeek": "Nya i veckan"
+    },
     "list": {
       "title": "Kandidater",
       "search": "Sök på namn eller e-post",

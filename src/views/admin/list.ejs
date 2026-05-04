@@ -1,4 +1,28 @@
 <%- include('../partials/head', { pageTitle: t('admin.list.title') }) %>
+
+<div class="stats-banner">
+  <div class="stat-card stat-indigo">
+    <div class="stat-icon">👥</div>
+    <div class="stat-value"><%= stats.total_candidates %></div>
+    <div class="stat-label"><%= t('admin.stats.candidates') %></div>
+  </div>
+  <div class="stat-card stat-emerald">
+    <div class="stat-icon">✓</div>
+    <div class="stat-value"><%= stats.verified_count %></div>
+    <div class="stat-label"><%= t('admin.stats.verified') %></div>
+  </div>
+  <div class="stat-card stat-amber">
+    <div class="stat-icon">🏷️</div>
+    <div class="stat-value"><%= stats.tags_count %></div>
+    <div class="stat-label"><%= t('admin.stats.tags') %></div>
+  </div>
+  <div class="stat-card stat-pink">
+    <div class="stat-icon">✨</div>
+    <div class="stat-value"><%= stats.new_this_week %></div>
+    <div class="stat-label"><%= t('admin.stats.newThisWeek') %></div>
+  </div>
+</div>
+
 <section>
   <header class="list-header">
     <h1><%= t('admin.list.title') %> <span class="muted" id="candidates-count">(<%= total %>)</span></h1>

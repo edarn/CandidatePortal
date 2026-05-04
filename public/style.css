@@ -379,17 +379,18 @@ table td a { color: #4f46e5; font-weight: 500; }
 /* --- Tag pills --- */
 .tag-pill {
   display: inline-block;
-  padding: 0.15rem 0.65rem;
+  padding: 0.18rem 0.7rem;
   border-radius: 999px;
   font-size: 0.78rem;
-  font-weight: 500;
-  background: #6b7280;
+  font-weight: 600;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
   color: white;
-  margin-right: 0.25rem;
+  margin-right: 0.3rem;
   margin-bottom: 0.2rem;
   text-decoration: none;
   white-space: nowrap;
   letter-spacing: 0.01em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 .tag-pill:hover { color: white; text-decoration: none; opacity: 0.92; }
 
@@ -436,6 +437,137 @@ table td a { color: #4f46e5; font-weight: 500; }
   text-align: center;
 }
 .auth-card .auth-links p { margin-bottom: 0.4rem; }
+
+/* --- Avatars --- */
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: white;
+  margin-right: 0.55rem;
+  vertical-align: middle;
+  letter-spacing: 0.03em;
+  flex-shrink: 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.avatar-large {
+  width: 84px;
+  height: 84px;
+  font-size: 1.85rem;
+  margin: 0 auto 0.85rem;
+  background: rgba(255, 255, 255, 0.22) !important;
+  border: 3px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+}
+
+/* --- Stats banner (admin) --- */
+.stats-banner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat-card {
+  position: relative;
+  padding: 1.1rem 1.25rem;
+  border-radius: 12px;
+  color: white;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.12);
+}
+
+.stat-card .stat-icon {
+  position: absolute;
+  right: 0.9rem;
+  top: 0.9rem;
+  font-size: 1.65rem;
+  opacity: 0.55;
+  line-height: 1;
+}
+
+.stat-card .stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.stat-card .stat-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  opacity: 0.92;
+  letter-spacing: 0.01em;
+}
+
+.stat-indigo  { background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%); }
+.stat-emerald { background: linear-gradient(135deg, #059669 0%, #10b981 100%); }
+.stat-amber   { background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%); }
+.stat-pink    { background: linear-gradient(135deg, #db2777 0%, #ec4899 100%); }
+
+/* --- Candidate hero (detail page) --- */
+.candidate-hero {
+  text-align: center;
+  color: white;
+  padding: 2.25rem 1.5rem;
+  border: 0;
+  position: relative;
+  overflow: hidden;
+}
+.candidate-hero h1 {
+  color: white;
+  margin: 0 0 0.35rem 0;
+  font-size: 1.75rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+.candidate-hero .subtitle {
+  margin: 0 0 1rem 0;
+  opacity: 0.92;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.hero-badges {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: white;
+}
+.hero-badge-verified {
+  background: rgba(16, 185, 129, 0.95);
+  border-color: rgba(16, 185, 129, 1);
+  color: white;
+}
+.hero-badge-pending {
+  background: rgba(251, 191, 36, 0.95);
+  border-color: rgba(251, 191, 36, 1);
+  color: #422006;
+}
 
 /* --- List header (admin) --- */
 .list-header {

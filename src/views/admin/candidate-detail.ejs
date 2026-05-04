@@ -1,38 +1,40 @@
 <%- include('../partials/head', { pageTitle: candidate.full_name }) %>
 <p style="margin-bottom: 1rem;"><a href="/admin">&larr; <%= t('common.back') %></a></p>
 
-<article>
-  <h1 style="margin-bottom: 0.5rem;"><%= candidate.full_name %></h1>
-  <p style="margin-bottom: 1rem;">
+<article class="candidate-hero" style="background: <%= avatarGradient(candidate.full_name) %>">
+  <div class="avatar avatar-large"><%= initials(candidate.full_name) %></div>
+  <h1><%= candidate.full_name %></h1>
+  <% if (candidate.current_role || candidate.current_company) { %>
+    <p class="subtitle">
+      <% if (candidate.current_role) { %><%= candidate.current_role %><% } %>
+      <% if (candidate.current_role && candidate.current_company) { %> · <% } %>
+      <% if (candidate.current_company) { %><%= candidate.current_company %><% } %>
+    </p>
+  <% } %>
+  <div class="hero-badges">
     <% if (candidate.email_verified_at) { %>
-      <span class="tag-pill" style="background:#10b981;">✓ <%= t('admin.list.verified') %></span>
+      <span class="hero-badge hero-badge-verified">✓ <%= t('admin.list.verified') %></span>
     <% } else { %>
-      <span class="tag-pill" style="background:#f59e0b;"><%= t('admin.list.notVerified') %></span>
+      <span class="hero-badge hero-badge-pending"><%= t('admin.list.notVerified') %></span>
     <% } %>
-  </p>
+    <% if (candidate.location) { %>
+      <span class="hero-badge">📍 <%= candidate.location %></span>
+    <% } %>
+  </div>
+</article>
 
+<article>
+  <h3>📋 <%= t('me.title') %></h3>
   <dl class="kv">
     <dt><%= t('fields.email') %></dt>
     <dd><a href="mailto:<%= candidate.email %>"><%= candidate.email %></a></dd>
 
     <dt><%= t('fields.phone') %></dt>
-    <dd><%= candidate.phone %></dd>
+    <dd><a href="tel:<%= candidate.phone %>"><%= candidate.phone %></a></dd>
 
     <% if (candidate.linkedin_url) { %>
       <dt><%= t('fields.linkedin') %></dt>
       <dd><a href="<%= candidate.linkedin_url %>" target="_blank" rel="noopener"><%= candidate.linkedin_url %></a></dd>
-    <% } %>
-    <% if (candidate.current_role) { %>
-      <dt><%= t('fields.currentRole') %></dt>
-      <dd><%= candidate.current_role %></dd>
-    <% } %>
-    <% if (candidate.current_company) { %>
-      <dt><%= t('fields.currentCompany') %></dt>
-      <dd><%= candidate.current_company %></dd>
-    <% } %>
-    <% if (candidate.location) { %>
-      <dt><%= t('fields.location') %></dt>
-      <dd><%= candidate.location %></dd>
     <% } %>
     <% if (candidate.summary) { %>
       <dt><%= t('fields.summary') %></dt>
@@ -45,7 +47,7 @@
 </article>
 
 <article>
-  <h3><%= t('admin.candidate.tags') %></h3>
+  <h3>🏷️ <%= t('admin.candidate.tags') %></h3>
   <% if (allTags.length === 0) { %>
     <p class="muted"><%= t('admin.tags.noTags') %> <a href="/admin/tags"><%= t('admin.tags.create') %></a></p>
   <% } else { %>
@@ -65,13 +67,13 @@
 </article>
 
 <article>
-  <h3><%= t('admin.candidate.notes') %></h3>
+  <h3>📝 <%= t('admin.candidate.notes') %></h3>
   <% notes.forEach(function(note) { %>
     <div class="note">
       <% if (note.met_at_location || note.met_at_date) { %>
         <p class="meta">
           <% if (note.met_at_date) { %><%= note.met_at_date %><% } %>
-          <% if (note.met_at_location) { %> &mdash; <%= note.met_at_location %><% } %>
+          <% if (note.met_at_location) { %> &mdash; 📍 <%= note.met_at_location %><% } %>
         </p>
       <% } %>
       <p class="body"><%= note.note_text %></p>
@@ -98,7 +100,7 @@
 </article>
 
 <article>
-  <h3>CV</h3>
+  <h3>📄 CV</h3>
   <% if (candidate.cv_filename) { %>
     <p>
       <strong><%= candidate.cv_original_name %></strong>
@@ -118,7 +120,7 @@
 </article>
 
 <article>
-  <h3 class="danger"><%= t('admin.candidate.deleteCandidate') %></h3>
+  <h3 class="danger">⚠️ <%= t('admin.candidate.deleteCandidate') %></h3>
   <p class="muted"><%= t('admin.candidate.deleteConfirm') %></p>
   <form method="post" action="/admin/candidate/<%= candidate.user_id %>/delete"
         onsubmit="return confirm('<%= t('admin.candidate.deleteConfirm') %>');">
