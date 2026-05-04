@@ -23,9 +23,14 @@ const envSchema = z.object({
   SMTP_PASS: optionalString,
   SMTP_FROM: optionalString,
 
+  // Default: skipped (demo mode without working SMTP).
+  // Set SKIP_EMAIL_VERIFICATION=0 (or 'false') to require verification.
   SKIP_EMAIL_VERIFICATION: z
-    .union([z.boolean(), z.string().transform((v) => v === '1' || v === 'true')])
-    .default(false),
+    .union([
+      z.boolean(),
+      z.string().transform((v) => !(v === '0' || v === 'false')),
+    ])
+    .default(true),
 
   ADMIN_BOOTSTRAP_EMAIL: optionalString,
   ADMIN_BOOTSTRAP_PASSWORD: optionalString,
