@@ -438,6 +438,63 @@ table td a { color: #4f46e5; font-weight: 500; }
 }
 .auth-card .auth-links p { margin-bottom: 0.4rem; }
 
+/* --- Tag editor (admin/tags.ejs) --- */
+.tag-form-row {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.tag-form-row input[type="text"] {
+  flex: 1 1 160px;
+  width: auto;
+  margin: 0;
+  min-width: 0;
+}
+.tag-form-row input[type="color"] {
+  flex: 0 0 42px;
+  width: 42px;
+  height: 38px;
+  padding: 2px;
+  margin: 0;
+  cursor: pointer;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  background: #fff;
+}
+.tag-form-row button {
+  flex: 0 0 auto;
+  align-self: center;
+  margin: 0;
+}
+
+.tags-list {
+  display: flex;
+  flex-direction: column;
+}
+.tag-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid #f1f5f9;
+  flex-wrap: wrap;
+}
+.tag-row:last-child { border-bottom: 0; padding-bottom: 0; }
+.tag-row:first-child { padding-top: 0; }
+.tag-row > .tag-pill {
+  margin: 0;
+  flex: 0 0 auto;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.82rem;
+  min-width: 100px;
+  text-align: center;
+}
+.tag-row > .tag-edit-form { flex: 1 1 auto; min-width: 0; }
+.tag-row > .inline-form { flex: 0 0 auto; }
+
 /* --- Avatars --- */
 .avatar {
   display: inline-flex;

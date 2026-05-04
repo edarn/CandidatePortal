@@ -1,15 +1,13 @@
 <%- include('../partials/head', { pageTitle: t('admin.tags.title') }) %>
 <p style="margin-bottom: 1rem;"><a href="/admin">&larr; <%= t('common.back') %></a></p>
+<h1 style="margin-bottom: 1rem;"><%= t('admin.tags.title') %></h1>
 
 <article>
-  <h1><%= t('admin.tags.title') %></h1>
-  <h3><%= t('admin.tags.create') %></h3>
-  <form method="post" action="/admin/tags">
+  <h3 style="margin-top: 0;"><%= t('admin.tags.create') %></h3>
+  <form method="post" action="/admin/tags" class="tag-form-row">
     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-    <div class="row">
-      <label><%= t('fields.tagName') %><input type="text" name="name" required></label>
-      <label><%= t('fields.tagColor') %><input type="text" name="color" placeholder="#3b82f6"></label>
-    </div>
+    <input type="text" name="name" placeholder="<%= t('fields.tagName') %>" required>
+    <input type="color" name="color" value="#6366f1" aria-label="<%= t('fields.tagColor') %>">
     <button type="submit"><%= t('common.create') %></button>
   </form>
 </article>
@@ -18,35 +16,22 @@
   <% if (tags.length === 0) { %>
     <p class="muted"><%= t('admin.tags.noTags') %></p>
   <% } else { %>
-    <div class="table-wrap">
-      <table>
-        <thead><tr>
-          <th><%= t('fields.tagName') %></th>
-          <th><%= t('fields.tagColor') %></th>
-          <th><%= t('common.actions') %></th>
-        </tr></thead>
-        <tbody>
-        <% tags.forEach(function(tag) { %>
-          <tr>
-            <td colspan="2">
-              <form method="post" action="/admin/tags/<%= tag.id %>" class="inline-form" style="display: flex; gap: 0.5rem; align-items: center;">
-                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                <input type="text" name="name" value="<%= tag.name %>" required style="flex: 1; margin: 0;">
-                <input type="text" name="color" value="<%= tag.color || '' %>" style="width: 110px; margin: 0;">
-                <span class="tag-pill" style="background:<%= tag.color || '#6b7280' %>"><%= tag.name %></span>
-                <button type="submit" class="secondary"><%= t('common.save') %></button>
-              </form>
-            </td>
-            <td>
-              <form method="post" action="/admin/tags/<%= tag.id %>/delete" class="inline-form">
-                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                <button type="submit" class="secondary outline"><%= t('common.delete') %></button>
-              </form>
-            </td>
-          </tr>
-        <% }); %>
-        </tbody>
-      </table>
+    <div class="tags-list">
+      <% tags.forEach(function(tag) { %>
+        <div class="tag-row">
+          <span class="tag-pill" style="background: <%= tag.color || '#6b7280' %>"><%= tag.name %></span>
+          <form method="post" action="/admin/tags/<%= tag.id %>" class="tag-form-row tag-edit-form">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <input type="text" name="name" value="<%= tag.name %>" required>
+            <input type="color" name="color" value="<%= tag.color || '#6b7280' %>" aria-label="<%= t('fields.tagColor') %>">
+            <button type="submit" class="secondary"><%= t('common.save') %></button>
+          </form>
+          <form method="post" action="/admin/tags/<%= tag.id %>/delete" class="inline-form">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button type="submit" class="secondary outline"><%= t('common.delete') %></button>
+          </form>
+        </div>
+      <% }); %>
     </div>
   <% } %>
 </article>
